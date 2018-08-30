@@ -1,0 +1,102 @@
+html,
+body {
+  margin: 0;
+}
+
+header {
+  background: red;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 10px;
+  height: 100vh;
+}
+
+.nested {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* Columns */
+.one-cols {
+  grid-column: auto / span 1;
+}
+
+.two-cols {
+  grid-column: auto / span 2;
+}
+
+.three-cols {
+  grid-column: auto / span 3;
+}
+
+.four-cols {
+  grid-column: auto / span 4;
+}
+
+.five-cols {
+  grid-column: auto / span 5;
+}
+
+.six-cols {
+  grid-column: auto / span 6;
+}
+
+.seven-cols {
+  grid-column: auto / span 7;
+}
+
+.eight-cols {
+  grid-column: auto / span 8;
+}
+
+.nine-cols {
+  grid-column: auto / span 9;
+}
+
+.ten-cols {
+  grid-column: auto / span 10;
+}
+
+.eleven-cols {
+  grid-column: auto / span 11;
+}
+
+.twelve-cols {
+  grid-column: auto / span 12;
+}
+/* End Columns */
+
+/* Merge Rows */
+.merge-two-rows {
+  grid-row: auto / span 2;
+}
+
+.merge-three-rows {
+  grid-row: auto / span 3;
+}
+
+.merge-four-rows {
+  grid-row: auto / span 4;
+}
+
+.merge-five-rows {
+  grid-row: auto / span 5;
+}
+
+.merge-six-rows {
+  grid-row: auto / span 6;
+}
+/* End Merge Rows */
+
+.grid > div {
+  background: #eee;
+}
+
+.grid > div:nth-child(odd) {
+  background: #dcdcdc;
+}
