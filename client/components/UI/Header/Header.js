@@ -10,14 +10,14 @@ import Button from '../Button/Button';
 
 const Header = ({handleClick, isLoggedIn}) => (
   <header className="header nested">
-    <Column className="flex" width={1}>
+    <Column flex width={1}>
       <div className="logo align-self-center">
         Taco Life
       </div>
     </Column>
     <Column width={10}></Column>
-    <Column className="flex justify-content-end" width={1}>
-      <Button className="btn-border b-danger b-2x">Login</Button>
+    <Column flex className="justify-content-end" width={1}>
+      <Button border double color="red">Login</Button>
     </Column>
   </header>
 )

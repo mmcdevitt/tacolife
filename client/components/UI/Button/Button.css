@@ -31,12 +31,12 @@
   background: transparent;
 }
 
-.b-danger {
+.b-red {
   border-color: #e93f33;
   color: #e93f33;
 }
 
-.btn.b-danger:hover {
+.btn.b-red:hover {
   color: #fff;
   background: red;
 }

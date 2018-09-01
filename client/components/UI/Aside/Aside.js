@@ -6,7 +6,7 @@ class Aside extends React.Component {
   render() {
     return (
       <aside className="aside three-cols">
-        
+        {this.props.children}
       </aside>
     );
   }

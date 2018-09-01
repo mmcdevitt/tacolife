@@ -1,4 +1,5 @@
 import React from "react";
+import cs from 'classnames';
 
 const nums = {
   1: "one",
@@ -23,20 +24,20 @@ class Column extends React.Component {
   }
 
   classNames() {
-    const { mergeRows, className } = this.props;
-    const classNames = [];
+    const { 
+      mergeRows, 
+      className, 
+      flex 
+    } = this.props;
 
-    if (className) {
-      classNames.push(className)
-    }
+    const classNames = cs(
+      `${this.width()}-cols`,
+      mergeRows ? `merge-${nums[mergeRows]}-rows` : null,
+      { flex },
+      className
+    );
 
-    classNames.push(`${this.width()}-cols`);
-
-    if (mergeRows) {
-      classNames.push(`merge-${nums[mergeRows]}-rows`);
-    }
-
-    return classNames.join(" ");
+    return classNames;
   }
 
   render() {

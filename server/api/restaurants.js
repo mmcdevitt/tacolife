@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Restaurant} = require('../db/models')
+const {Restaurant, MenuItem} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,7 +12,16 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id)
+    const restaurant = await Restaurant.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        {
+          model: MenuItem
+        }
+      ]
+    })
     res.json(restaurant)
   } catch (err) {
     next(err)

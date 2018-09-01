@@ -4,6 +4,7 @@ const db = require('../server/db')
 
 const {User} = require('../server/db/models')
 const restaurantSeed = require('../server/seeds/restaurantSeeds')
+const menuSeed = require('../server/seeds/menuSeeds')
 
 async function seed() {
   await db.sync({force: true})
@@ -26,6 +27,7 @@ async function runSeed() {
   try {
     await seed()
     await restaurantSeed()
+    await menuSeed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1

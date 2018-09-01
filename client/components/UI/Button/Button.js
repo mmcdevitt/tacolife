@@ -1,16 +1,28 @@
 import React from 'react';
+import cs from 'classnames';
 
 import './Button.css';
 
 const Button = props => {
-  const classNames = ['btn'];
+  const { 
+    border, 
+    primary,
+    color,
+    double,
+    className 
+  } = props;
 
-  if (props.className) {
-    classNames.push(props.className)
-  }
+  const classNames = cs(
+    'btn',
+    border ? 'btn-border' : null,
+    color ? `b-${color}` : null,
+    double ? 'b-2x' : null,
+    { primary },
+    className
+  )
 
   return (
-    <button className={classNames.join(' ')}>
+    <button className={classNames}>
       {props.children}
     </button>
   )

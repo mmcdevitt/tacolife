@@ -1,7 +1,7 @@
 const User = require('./user')
 const Restaurant = require('./restaurant')
 const Category = require('./category')
-const Item = require('./item')
+const MenuItem = require('./menuItem')
 
 // Relationships
 User.belongsToMany(Restaurant, {through: 'userrestaurant'})
@@ -10,15 +10,15 @@ Restaurant.belongsToMany(User, {through: 'userrestaurant'})
 Category.belongsTo(Restaurant);
 Restaurant.hasMany(Category);
 
-Item.belongsTo(Restaurant);
-Restaurant.hasMany(Item);
+MenuItem.belongsTo(Restaurant);
+Restaurant.hasMany(MenuItem);
 
-Item.belongsTo(Category);
-Category.hasMany(Item);
+MenuItem.belongsTo(Category);
+Category.hasMany(MenuItem);
 
 module.exports = {
   User,
   Restaurant,
   Category,
-  Item,
+  MenuItem,
 }
