@@ -1,7 +1,9 @@
 'use strict'
 
 const db = require('../server/db')
+
 const {User} = require('../server/db/models')
+const restaurantSeed = require('../server/seeds/restaurantSeeds')
 
 async function seed() {
   await db.sync({force: true})
@@ -23,6 +25,7 @@ async function runSeed() {
   console.log('seeding...')
   try {
     await seed()
+    await restaurantSeed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1

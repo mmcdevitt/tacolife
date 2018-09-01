@@ -1,28 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Grid, Column, Nested } from "../components/Grid";
-
+import axios from 'axios';
+import actions from '../actions/restaurant/actions'
 import Restaurants from '../components/Restaurants/Restaurants';
+import Aside from '../components/UI/Aside/Aside';
+
+const { fetchRestaurants, requestRestaurants } = actions;
 
 class Home extends React.Component {
-  constructor () {
-    super();
+  componentDidMount () {
+    this.props.requestRestaurants()
+    this.props.fetchRestaurants()
+  }
 
-    this.state = {
-      restaurants: [
-        {id: 1, name: 'taco bros'},
-        {id: 2, name: 'chipotle'},
-        {id: 3, name: 'taco stand'}
-      ]
+  renderRestaurants () {
+    if (this.props.isLoading) {
+      return <div>Loading</div>
+    } else {
+      return <Restaurants restaurants={this.props.restaurants} />
     }
   }
 
   render () {
     return (
       <Grid gap={0}>
-        <Column width={3}>hello</Column>
+        <Aside />
         <Column width={9}>
           <Nested>
-            <Restaurants restaurants={this.state.restaurants} />
+            {this.renderRestaurants()}
           </Nested>
         </Column>
       </Grid>
@@ -30,4 +36,19 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+function mapStateToProps (state) {
+  const { 
+    restaurants, 
+    isLoading 
+  } = state.Restaurant
+
+  return {
+    restaurants,
+    isLoading,
+  }
+}
+
+export default connect(mapStateToProps, {
+  fetchRestaurants,
+  requestRestaurants,
+})(Home);

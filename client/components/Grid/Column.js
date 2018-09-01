@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 
 const nums = {
   1: "one",
@@ -17,14 +16,6 @@ const nums = {
 };
 
 class Column extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      classNames: []
-    };
-  }
-
   width() {
     const { width } = this.props;
 
@@ -33,7 +24,7 @@ class Column extends React.Component {
 
   classNames() {
     const { mergeRows, className } = this.props;
-    const { classNames } = this.state;
+    const classNames = [];
 
     if (className) {
       classNames.push(className)
@@ -52,11 +43,5 @@ class Column extends React.Component {
     return <div className={this.classNames()}>{this.props.children}</div>;
   }
 }
-
-_.times(12, i => {
-  Column[_.upperFirst(nums[i])] = props => (
-    <div className={`${nums[i]}-cols`}>{props.children}</div>
-  );
-});
 
 export default Column;

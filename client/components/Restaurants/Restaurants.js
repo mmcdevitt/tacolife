@@ -13,6 +13,7 @@ class Restaurants extends React.Component {
         <Restaurant 
           key={restaurant.id} 
           name={restaurant.name}
+          id={restaurant.id}
         />
       )
     })

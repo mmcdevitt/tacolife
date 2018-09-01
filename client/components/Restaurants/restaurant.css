@@ -1,4 +1,20 @@
 .taco {
-  padding: 30px;
+  padding: 10px;
   border-bottom: 1px solid #dcdcdc;
+}
+
+.taco:hover {
+  cursor: pointer;
+  background: #fbfbfb;
+}
+
+.text-muted {
+  color: #969696;
+}
+
+.taco-image {
+  height: 85px;
+  width: 85px;
+  background: #f8f8f8;
+  margin-right: 15px;
 }
