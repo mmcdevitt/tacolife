@@ -25,6 +25,7 @@ class Home extends React.Component {
   render () {
     return (
       <Grid gap={0}>
+        <header className="header twelve-cols">test</header>
         <Aside />
         <Column width={9}>
           <Nested>
