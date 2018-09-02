@@ -6,6 +6,7 @@ import Aside from '../UI/Aside/Aside';
 import Button from '../UI/Button/Button';
 
 import {addToCart} from '../../store/cartReducer';
+import SidebarCart from '../Cart/SidebarCart';
 
 class SingleRestaurant extends React.Component {
   constructor () {
@@ -47,16 +48,7 @@ class SingleRestaurant extends React.Component {
             })}
           </ul>
         </Column>
-        <Aside>
-          Cart Items
-          {cartItems.map(item => {
-            return (
-              <div key={item.id}>
-                {item.menuItem.name}
-              </div>
-            )
-          })}
-        </Aside>
+        <SidebarCart cartItems={cartItems} />
       </React.Fragment>
     )
   }

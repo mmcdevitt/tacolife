@@ -1,3 +1,8 @@
 .aside {
-  background: #f6f6f6;
+  background: #fdfdfd;
+}
+
+.border-left {
+  border-left: 1px solid #dcdcdc;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.18);
 }

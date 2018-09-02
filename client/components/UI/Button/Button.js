@@ -9,6 +9,7 @@ const Button = props => {
     primary,
     color,
     double,
+    block,
     className 
   } = props;
 
@@ -18,6 +19,7 @@ const Button = props => {
     color ? `b-${color}` : null,
     double ? 'b-2x' : null,
     { primary },
+    { block },
     className
   )
 
