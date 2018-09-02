@@ -5,6 +5,7 @@ import axios from 'axios';
 import actions from '../actions/restaurant/actions'
 import Restaurants from '../components/Restaurants/Restaurants';
 import Aside from '../components/UI/Aside/Aside';
+import { Navbar } from '../components'
 
 const { fetchRestaurants, requestRestaurants } = actions;
 
@@ -24,15 +25,14 @@ class Home extends React.Component {
 
   render () {
     return (
-      <Grid gap={0}>
-        <header className="header twelve-cols">test</header>
+      <React.Fragment>
         <Aside />
-        <Column width={9}>
+        <Column className="content" width={9}>
           <Nested>
             {this.renderRestaurants()}
           </Nested>
         </Column>
-      </Grid>
+      </React.Fragment>
     )
   }
 }

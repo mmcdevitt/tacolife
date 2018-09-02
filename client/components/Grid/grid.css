@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 10px;
+  grid-template-rows: auto 1fr;
   height: 100vh;
 }
 
@@ -83,4 +84,3 @@
   grid-row: auto / span 6;
 }
 /* End Merge Rows */
-

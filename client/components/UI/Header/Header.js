@@ -9,29 +9,28 @@ import './Header.css';
 import Button from '../Button/Button';
 
 const Header = ({handleClick, isLoggedIn}) => (
-  <header className="header nested">
-    <Column flex width={1}>
-      <div className="logo align-self-center">
-        Taco Life
-      </div>
-    </Column>
-    <Column width={10}></Column>
-    <Column flex className="justify-content-end" width={1}>
-      <Button border double color="red">Login</Button>
-    </Column>
+  <header className="header twelve-cols">
+    <Nested>
+      <Column flex width={1}>
+        <div className="logo align-self-center">
+          <Link to="/">Taco Life</Link>
+        </div>
+      </Column>
+      <Column width={10}></Column>
+      <Column flex className="justify-content-end" width={1}>
+        <Button border double color="red">Login</Button>
+      </Column>
+    </Nested>
   </header>
 )
 
-/**
- * CONTAINER
- */
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.User.id
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
@@ -39,7 +38,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
 
 /**
  * PROP TYPES

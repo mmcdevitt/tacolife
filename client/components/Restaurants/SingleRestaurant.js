@@ -28,8 +28,8 @@ class SingleRestaurant extends React.Component {
 
   render () {
     return (
-      <Grid gap={0}>
-        <Column width={9}>
+      <React.Fragment>
+        <Column className="content" width={9}>
           {this.state.restaurant.name}
           <ul>
             {this.state.menuItems.map(item => {
@@ -42,7 +42,7 @@ class SingleRestaurant extends React.Component {
         <Aside>
           Cart Items
         </Aside>
-      </Grid>
+      </React.Fragment>
     )
   }
 }

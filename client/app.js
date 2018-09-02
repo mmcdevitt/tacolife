@@ -2,13 +2,13 @@ import React from 'react'
 
 import {Navbar} from './components'
 import Routes from './routes'
+import Layout from './components/Layout/Layout';
 
 const App = () => {
   return (
-    <React.Fragment>
-      <Navbar />
+    <Layout>
       <Routes />
-    </React.Fragment>
+    </Layout>
   )
 }
 
