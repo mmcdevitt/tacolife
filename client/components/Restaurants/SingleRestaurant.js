@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Grid, Column } from '../Grid';
 import Aside from '../UI/Aside/Aside';
+import Button from '../UI/Button/Button';
 
 class SingleRestaurant extends React.Component {
   constructor () {
@@ -33,7 +34,10 @@ class SingleRestaurant extends React.Component {
           <ul>
             {this.state.menuItems.map(item => {
               return (
-                <li key={item.id}>{item.name} - ${item.price}</li>
+                <li key={item.id}>
+                  {item.name} - ${item.price}
+                  <Button primary>Add to Cart</Button>
+                </li>
               )
             })}
           </ul>
