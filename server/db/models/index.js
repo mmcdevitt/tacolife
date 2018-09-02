@@ -3,7 +3,7 @@ const Restaurant = require('./restaurant')
 const Category = require('./category')
 const MenuItem = require('./menuItem')
 const Cart = require('./cart')
-const CartItems = require('./cartItem')
+const CartItems = require('./cartItems')
 
 // Relationships
 User.belongsToMany(Restaurant, {through: 'userrestaurant'})
