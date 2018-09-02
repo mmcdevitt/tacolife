@@ -1,6 +1,9 @@
 .header {
   background: rgb(248, 252, 106);
   padding: 10px;
+  position: fixed;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 .logo a {

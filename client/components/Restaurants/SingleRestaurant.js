@@ -17,7 +17,6 @@ class SingleRestaurant extends React.Component {
     axios
       .get(`/api/restaurants/${this.props.match.params.id}`)
       .then(res => {
-        console.log(res.data)
         this.setState({
           restaurant: res.data,
           menuItems: res.data.menuItems

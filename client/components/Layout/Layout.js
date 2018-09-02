@@ -1,14 +1,16 @@
 import React from 'react';
-import { Grid } from '../Grid';
+import { Grid, Column, Nested } from '../Grid';
 import { Navbar } from '../index'
 
 class Layout extends React.Component {
   render () {
     return (
-      <Grid gap={0}>
+      <React.Fragment>
         <Navbar />
-        {this.props.children}
-      </Grid>
+        <Grid gap={0}>
+          {this.props.children}
+        </Grid>
+      </React.Fragment>
     )
   }
 }

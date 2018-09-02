@@ -3,8 +3,9 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 10px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr;
   height: 100vh;
+  padding-top: 52px;
 }
 
 .nested {
