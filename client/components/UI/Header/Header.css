@@ -1,8 +1,10 @@
 .header {
-  background: rgb(248, 252, 106);
+  background: #fff;
+  border-bottom: 1px solid #dcdcdc;
   padding: 10px;
   position: fixed;
   width: 100%;
+  z-index: 1000;
 }
 
 .logo a {

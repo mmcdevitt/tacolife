@@ -13,7 +13,7 @@ class SidebarCart extends React.Component {
     const {cartItems} = this.props;
 
     return (
-      <Aside border="left" className="flex flex-direction-col">
+      <Aside cart border="left" className="flex flex-direction-col">
         <div className="cart-header">
           <h6>Your Cart</h6>
         </div>

@@ -5,10 +5,11 @@ import './Aside.css';
 
 class Aside extends React.Component {
   classes () {
-    const { border, className } = this.props;
+    const { border, className, cart } = this.props;
 
     const classNames = cs(
       'aside',
+      { cart },
       'three-cols',
       border ? `border-${border}` : null,
       className
