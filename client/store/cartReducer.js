@@ -47,14 +47,14 @@ export const setCart = userId => {
           localCart.cartItems.forEach(localItem => {
             if (
               !cartItems
-                .map(item => item.productId)
-                .includes(localItem.productId)
+                .map(item => item.menuItemId)
+                .includes(localItem.menuItemId)
             ) {
               axios
                 .post('/api/cart_items', {
                   quantity: Number(localItem.quantity),
                   cartId: res.data[0].id,
-                  productId: localItem.productId,
+                  menuItemId: localItem.menuItemId,
                   userId
                 })
                 .then(res => {
@@ -65,11 +65,11 @@ export const setCart = userId => {
                 })
             } else if (
               cartItems
-                .map(item => item.productId)
-                .includes(localItem.productId)
+                .map(item => item.menuItemId)
+                .includes(localItem.menuItemId)
             ) {
               const cartItem = cartItems.find(
-                item => item.productId === localItem.productId
+                item => item.menuItemId === localItem.menuItemId
               )
               axios
                 .put(`/api/cart_items/${cartItem.id}`, {
@@ -111,7 +111,7 @@ export const setLocalCart = () => {
         cartItems: localCart.cartItems.map(item => {
           return {
             ...item,
-            productId: Number(item.productId)
+            menuItemId: Number(item.menuItemId)
           }
         })
       }
@@ -251,7 +251,7 @@ const reducer = (state = initialState, action) => {
         cartItems: items,
         totalPrice: items.length
           ? items
-              .map(item => parseFloat(item.product.price) * item.quantity)
+              .map(item => parseFloat(item.menuItem.price) * item.quantity)
               .reduce((a, b) => a + b)
           : 0,
         cartQuantity: items.length
@@ -290,7 +290,7 @@ const reducer = (state = initialState, action) => {
         cartItems: state.cartItems.filter(item => {
           return item.id !== action.payload
         }),
-        totalPrice: state.totalPrice - item.product.price * item.quantity,
+        totalPrice: state.totalPrice - item.menuItem.price * item.quantity,
         cartQuantity: state.cartQuantity - item.quantity
       }
     case ADD_QUANTITY:
@@ -308,7 +308,7 @@ const reducer = (state = initialState, action) => {
         }),
         totalPrice:
           state.totalPrice +
-          parseFloat(action.payload.product.price) *
+          parseFloat(action.payload.menuItem.price) *
             (action.payload.quantity - cartItem.quantity),
         cartQuantity:
           state.cartQuantity + (action.payload.quantity - cartItem.quantity)

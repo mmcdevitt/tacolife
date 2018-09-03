@@ -1,4 +1,5 @@
 import React from "react";
+import cs from 'classnames';
 
 class Nested extends React.Component {
   styles() {
@@ -9,9 +10,20 @@ class Nested extends React.Component {
     };
   }
 
+  classes () {
+    const { className } = this.props;
+
+    const classNames = cs(
+      'nested',
+      className
+    )
+
+    return classNames;
+  }
+
   render() {
     return (
-      <div className="nested" style={this.styles()}>
+      <div className={this.classes()} style={this.styles()}>
         {this.props.children}
       </div>
     );

@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Grid, Column } from '../Grid';
+import { Grid, Column, Nested } from '../Grid';
 import Aside from '../UI/Aside/Aside';
 import Button from '../UI/Button/Button';
 
 import {addToCart} from '../../store/cartReducer';
 import SidebarCart from '../Cart/SidebarCart';
+import MenuItems from './MenuItems';
+import Container from '../UI/Container/Container'
+
+import './SingleRestaurant.css';
 
 class SingleRestaurant extends React.Component {
   constructor () {
@@ -32,21 +36,17 @@ class SingleRestaurant extends React.Component {
 
   render () {
     const { cartItems } = this.props;
-    console.log(cartItems)
+    const { restaurant, menuItems } = this.state;
     return (
       <React.Fragment>
         <Column className="content" width={9}>
-          {this.state.restaurant.name}
-          <ul>
-            {this.state.menuItems.map(item => {
-              return (
-                <li key={item.id}>
-                  {item.name} - ${item.price}
-                  <button onClick={() => this.props.addToCart(item.id, null, 1, this.state.restaurant)}>Add to Cart</button>
-                </li>
-              )
-            })}
-          </ul>
+          <Container>
+            <div className="restaurant-detail">
+              <h3>{restaurant.name}</h3>
+              <div className="text-small text-muted">590 Madison Ave</div>
+            </div>
+            <MenuItems menuItems={menuItems} />
+          </Container>
         </Column>
         <SidebarCart cartItems={cartItems} />
       </React.Fragment>

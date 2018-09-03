@@ -1,0 +1,20 @@
+.menu-item {
+  border: 1px solid #dcdcdc;;
+  padding: 20px;
+  border-radius: 2px;
+  min-height: 125px;
+}
+
+.menu-item:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.menu-item h6 {
+  color: #333;
+}
+
+.menu-item-price span {
+  font-weight: 700;
+  font-size: 13px;
+}
