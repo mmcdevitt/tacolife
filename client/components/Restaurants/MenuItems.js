@@ -13,6 +13,8 @@ class MenuItems extends React.Component {
         <MenuItem 
           key={item.id} 
           item={item}
+          click={this.props.click}
+          id={item.id}
         />
       )
     })

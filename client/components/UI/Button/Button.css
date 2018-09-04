@@ -17,6 +17,11 @@
   background-color: #53a6fa;
 }
 
+.success {
+  color: rgba(255,255,255,.85);
+  background: #22b66e;
+}
+
 .block {
   display: block;
   width: 100%;

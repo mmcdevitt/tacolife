@@ -18,7 +18,8 @@ class SingleRestaurant extends React.Component {
 
     this.state = {
       restaurant: {},
-      menuItems: []
+      menuItems: [],
+      selectedItem: {},
     }
   }
 
@@ -37,15 +38,24 @@ class SingleRestaurant extends React.Component {
   render () {
     const { cartItems } = this.props;
     const { restaurant, menuItems } = this.state;
+    
     return (
       <React.Fragment>
         <Column className="content" width={9}>
           <Container>
             <div className="restaurant-detail">
-              <h3>{restaurant.name}</h3>
+              <Button success>Open</Button>
+              <div className="flex space-between">
+                <h3>{restaurant.name}</h3>
+                <p>Hours: 8:00AM - 12:00AM</p>
+              </div>
               <div className="text-small text-muted">590 Madison Ave</div>
+              <div className="text-small text-muted">Delivery: 30 - 40 min</div>
+              <div>
+                4.5 / 5 125 Ratings
+              </div>
             </div>
-            <MenuItems menuItems={menuItems} />
+            <MenuItems click={this.handleClick} menuItems={menuItems} />
           </Container>
         </Column>
         <SidebarCart cartItems={cartItems} />
