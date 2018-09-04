@@ -1,13 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Column } from '../Grid';
-import ModalLanucher from '../UI/Modal/ModalLauncher';
+import ModalLauncher from '../UI/Modal/ModalLauncher';
+import { addToCart } from '../../store/cartReducer';
+import AddToCart from '../UI/AddToCart/AddToCart';
 
 class MenuItem extends React.Component {
-  element = (f) => {
+  customElement = (f) => {
     const { item } = this.props;
 
     return (
-      <div className="menu-item" onClick={f}>
+      <div className="menu-item flex flex-direction-col space-between" onClick={f}>
         <div>
           <h6>{item.name}</h6>
         </div>
@@ -19,16 +22,20 @@ class MenuItem extends React.Component {
   }
 
   render () {
-    const { item } = this.props;
+    // toggleModal is being passed from ModalLauncher using React.Children for this.props.children
+    const { item, toggleModal } = this.props;
 
     return (
-      <Column flex className="menu-item-container flex-direction-col space-between" width={6}>
-        <ModalLanucher customElement={this.element}>
-          {item.name}
-        </ModalLanucher>
+      <Column className="menu-item-container" width={6}>
+        <ModalLauncher customElement={this.customElement}>
+          {/* <h1>{item.name}</h1> */}
+          <AddToCart menuItem={item} toggleModal={toggleModal} />
+        </ModalLauncher>
       </Column>
     )
   }
 }
 
-export default MenuItem;
+export default connect(null, {
+  addToCart
+})(MenuItem);

@@ -26,7 +26,7 @@ const Button = props => {
   )
 
   return (
-    <button className={classNames}>
+    <button className={classNames} onClick={props.onClick}>
       {props.children}
     </button>
   )
