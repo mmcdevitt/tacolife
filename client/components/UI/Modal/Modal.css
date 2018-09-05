@@ -7,3 +7,17 @@
   top: 0;
   background: rgba(255, 255, 255, 0.75);
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  bottom: 0;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  width: 500px;
+  height: 500px;
+  z-index: 9999;
+}

@@ -6,17 +6,29 @@ import {Navbar} from './components'
 import Routes from './routes'
 import Layout from './components/Layout/Layout';
 import {setCart, requestCart, setLocalCart} from './store/cartReducer'
+import {me} from './store'
 
 class App extends React.Component {
   componentDidMount () {
     const {currentUser} = this.props
 
+    this.props.me()
     this.props.requestCart();
 
     if (!currentUser) {
       this.props.setLocalCart()
     }
   }
+
+  // renderTest () {
+  //   if (!this.props.currentUser.id) {
+  //     return 'Loading'
+  //   } else {
+  //     return (
+        
+  //     )
+  //   }
+  // }
 
   render () {
     return (
@@ -29,7 +41,7 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: null
+    currentUser: !!state.User.id
   }
 }
 
@@ -37,5 +49,6 @@ export default withRouter(
   connect(mapStateToProps, {
     requestCart,
     setLocalCart,
+    me,
   })(App)
 )

@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
+}
+
+@font-face{
+  font-family:'avenirlt-roman';
+  src:url('../fonts/avenirlt-roman.eot');
+  src:url('../fonts/avenirlt-roman.eot?#iefix') format("embedded-opentype"),
+      url('../fonts/avenirlt-roman.woff') format("woff"),
+      url('../fonts/avenirlt-roman.ttf') format("truetype")
 }
 
 body {

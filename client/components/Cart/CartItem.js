@@ -24,7 +24,7 @@ class CartItem extends React.Component {
             ${item.menuItem.price}
           </div>
           <div className="remove-cart-item" onClick={() => deleteItem(item.id, null)}>
-            <i class="fa fa-close"></i>
+            <i className="fa fa-close"></i>
           </div>
         </div>
       </div>

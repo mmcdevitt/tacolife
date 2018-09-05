@@ -12,7 +12,7 @@ import RestaurantRoutes from './components/Restaurants/routes';
  */
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData()
+    // this.props.loadInitialData()
   }
 
   render() {
@@ -20,18 +20,10 @@ class Routes extends Component {
 
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/register" component={Signup} />
         <Route path="/restaurants" component={RestaurantRoutes} />
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Home} />
       </Switch>
     )
   }
