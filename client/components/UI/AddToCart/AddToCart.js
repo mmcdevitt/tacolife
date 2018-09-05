@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 
   return {
     cartId,
-    user: state.User,
+    user: state.Auth.currentUser,
     cartItems,
     isCartLoading: isLoading
   }

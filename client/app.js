@@ -8,27 +8,30 @@ import Layout from './components/Layout/Layout';
 import {setCart, requestCart, setLocalCart} from './store/cartReducer'
 import {me} from './store'
 
+const token = localStorage.getItem('token')
+
 class App extends React.Component {
   componentDidMount () {
     const {currentUser} = this.props
 
-    this.props.me()
+    if (token) {
+      this.props.me()
+    }
+      
     this.props.requestCart();
 
-    if (!currentUser) {
+    if (!currentUser.authenticated) {
       this.props.setLocalCart()
     }
   }
 
-  // renderTest () {
-  //   if (!this.props.currentUser.id) {
-  //     return 'Loading'
-  //   } else {
-  //     return (
-        
-  //     )
-  //   }
-  // }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const {currentUser} = this.props
+
+    if (nextProps.currentUser.id !== currentUser.id) {
+      this.props.setCart(nextProps.currentUser.id)
+    }
+  }
 
   render () {
     return (
@@ -41,7 +44,7 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: !!state.User.id
+    currentUser: state.Auth.currentUser
   }
 }
 
@@ -50,5 +53,6 @@ export default withRouter(
     requestCart,
     setLocalCart,
     me,
+    setCart,
   })(App)
 )

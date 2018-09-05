@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../../../store'
 import { Grid, Column, Nested } from "../../Grid";
+import {resetCart} from '../../../store/cartReducer'
 
 import './Header.css';
 import Button from '../Button/Button';
@@ -13,6 +14,7 @@ class Header extends React.Component {
     // const {logout} = this.props
 
     this.props.logout()
+    this.props.resetCart()
   }
 
   renderSessionLinks() {
@@ -52,12 +54,13 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.User.id
+    isLoggedIn: state.Auth.authenticated
   }
 }
 
 export default connect(mapStateToProps, {
   logout,
+  resetCart,
 })(Header)
 
 

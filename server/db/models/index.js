@@ -18,6 +18,9 @@ Restaurant.hasMany(MenuItem);
 MenuItem.belongsTo(Category);
 Category.hasMany(MenuItem);
 
+Cart.belongsTo(User)
+User.hasMany(Cart)
+
 CartItems.belongsTo(Cart, {onDelete: 'cascade'})
 Cart.hasMany(CartItems)
 
