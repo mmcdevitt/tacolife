@@ -15,6 +15,7 @@ const initialState = {
   currentUser: {},
   authenticated: false,
   errorMessage: '',
+  token: ''
 }
 
 /**
@@ -33,7 +34,13 @@ export const me = () => {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then(res => {
-        dispatch(getUser(res.data))
+        dispatch({
+          type: FETCH_USER,
+          payload: {
+            user: res.data,
+            token: res.data.token
+          }
+        })
       })
       .catch(err => {
         console.log(err)
@@ -41,16 +48,22 @@ export const me = () => {
   }
 }
 
-export const auth = (email, password, method) => {
+export const signinUser = ({username, password}, method) => {
   return dispatch => {
     axios.post(`/auth/${method}`, {
-      email, password
+      username, password
     })
     .then(res => {
-      dispatch(getUser(res.data.user))
-
       localStorage.setItem('token', res.data.token);
-      history.push('/home')
+      console.log(res.data)
+      dispatch({
+        type: FETCH_USER,
+        payload: {
+          user: res.data.user,
+          token: res.data.token
+        }
+      })
+      history.push('/oauthredirect')
     })
     .catch(err => {
       console.log(err)
@@ -78,8 +91,9 @@ export default function(state=initialState, action) {
     case FETCH_USER:
       return {
         ...state,
-        currentUser: action.user,
+        currentUser: action.payload.user,
         authenticated: true,
+        token: action.payload.token
       }
     case REMOVE_USER:
       return {

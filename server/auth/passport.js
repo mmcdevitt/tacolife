@@ -7,15 +7,12 @@ const keys = require('../../config/keys');
 const User = require('../db/models/user');
 
 // Create Local Strategy
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-  },
-  function (email, password, done) {
+passport.use(new LocalStrategy(
+  function (username, password, done) {
     User
       .findOne({
         where: {
-          email
+          username
         }
       })
       .then(user => {

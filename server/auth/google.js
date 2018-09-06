@@ -20,14 +20,22 @@ const googleConfig = {
 const strategy = new GoogleStrategy(
   googleConfig,
   (token, refreshToken, profile, done) => {
+    console.log(profile)
     const googleId = profile.id
     const name = profile.displayName
     const email = profile.emails[0].value
 
     User.
       findOrCreate({
-      where: {googleId},
-      defaults: {name, email}
+      where: {
+        email
+      },
+      defaults: {
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        username: email,
+        email
+      }
     })
       .then(([user]) => done(null, user))
       .catch(done)
@@ -50,7 +58,7 @@ router.get(
   }),
   (req, res) => {
     const token = 'token'
-    res.redirect('/home?token=' + sessionsToken(req.user))
+    res.redirect('/oauthredirect?token=' + sessionsToken(req.user))
   }
 )
 

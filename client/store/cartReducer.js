@@ -26,14 +26,13 @@ export const requestCart = () => {
   }
 }
 
-export const setCart = userId => {
+export const setCart = (userId, token) => {
   const localCart = JSON.parse(localStorage.getItem('cart'))
-
   return dispatch => {
     if (userId) {
       axios
         .post('/api/cart', userId, {
-	      	headers: { authorization: localStorage.getItem('token') }
+	      	headers: { authorization: token }
 	    	})
         .then(res => {
           const {id, cartItems} = res.data[0]

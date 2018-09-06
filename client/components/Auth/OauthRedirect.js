@@ -2,13 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import queryString from 'query-string'
-import {me} from '../store'
+import {me} from '../../store'
 
-
-/**
- * COMPONENT
- */
-class UserHome extends React.Component {
+class OauthRedirect extends React.Component {
   componentDidMount () {
     if (location.search && location.search.length > 0) {
       localStorage.setItem('token', queryString.parse(location.search).token)
@@ -28,20 +24,6 @@ class UserHome extends React.Component {
   }
 }
 
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    email: null
-  }
-}
-
-export default connect(mapState, {me})(UserHome)
-
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
+export default connect(null, {
+  me
+})(OauthRedirect)

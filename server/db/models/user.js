@@ -5,7 +5,20 @@ const bluebird = require("bluebird");
 const bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
 
 const User = db.define('user', {
+  firstName: { 
+    type: Sequelize.STRING, 
+    allowNull: false 
+  },
+  lastName: { 
+    type: Sequelize.STRING, 
+    allowNull: false 
+  },  
   email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
+  },
+  username: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
