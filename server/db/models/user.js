@@ -1,6 +1,8 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const bluebird = require("bluebird");
+const bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
 
 const User = db.define('user', {
   email: {
@@ -9,12 +11,7 @@ const User = db.define('user', {
     allowNull: false
   },
   password: {
-    type: Sequelize.STRING,
-    // Making `.password` act like a func hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
-    get() {
-      return () => this.getDataValue('password')
-    }
+    type: Sequelize.STRING
   },
   salt: {
     type: Sequelize.STRING,
@@ -29,39 +26,26 @@ const User = db.define('user', {
   }
 })
 
+User.beforeCreate(function (user, options,) {
+  return bcrypt.genSaltAsync(10)
+    .then(function (salt) {
+      return bcrypt.hashAsync(user.password, salt, null)
+    })
+    .then(function (hash) {
+      user.password = hash
+    })
+    .catch(function (err) {
+      return db.Promise.reject(err)
+    })
+})
+
+// Compare user input password on login to the encrypted password
+User.prototype.comparePassword = function (password, callback) {
+  bcrypt.compare(password, this.password, function (err, res) {
+    if (err) { return callback(err) }
+
+    callback(null, res);
+  })
+}
+
 module.exports = User
-
-/**
- * instanceMethods
- */
-User.prototype.correctPassword = function(candidatePwd) {
-  return User.encryptPassword(candidatePwd, this.salt()) === this.password()
-}
-
-/**
- * classMethods
- */
-User.generateSalt = function() {
-  return crypto.randomBytes(16).toString('base64')
-}
-
-User.encryptPassword = function(plainText, salt) {
-  return crypto
-    .createHash('RSA-SHA256')
-    .update(plainText)
-    .update(salt)
-    .digest('hex')
-}
-
-/**
- * hooks
- */
-const setSaltAndPassword = user => {
-  if (user.changed('password')) {
-    user.salt = User.generateSalt()
-    user.password = User.encryptPassword(user.password(), user.salt())
-  }
-}
-
-User.beforeCreate(setSaltAndPassword)
-User.beforeUpdate(setSaltAndPassword)

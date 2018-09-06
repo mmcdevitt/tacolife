@@ -1,18 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import queryString from 'query-string'
+
+// if (location.string) {
+  localStorage.setItem('token', queryString.parse(location.search).token)
+// }
+
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
+class UserHome extends React.Component {
+  componentDidMount () {
+    this.props.history.push('/')
+  }
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
+  render () {
+    const {email} = this.props
+
+    return (
+      <div>
+        <h3>Welcome</h3>
+      </div>
+    )
+  }
 }
 
 /**
@@ -20,7 +32,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.User.email
+    email: null
   }
 }
 

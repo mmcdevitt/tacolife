@@ -1,8 +1,11 @@
 const router = require('express').Router()
 const {CartItems, MenuItem} = require('../db/models')
+const passportService = require('../auth/passport')
+const passport = require('passport');
+const authenticateUser = passport.authenticate('jwt', { session: false });
 module.exports = router
 
-router.post('/', (req, res, next) => {
+router.post('/', authenticateUser, (req, res, next) => {
   CartItems.create(req.body)
     .then(item => {
       CartItems.findOne({
@@ -23,7 +26,7 @@ router.post('/', (req, res, next) => {
     })
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', authenticateUser, (req, res, next) => {
   CartItems.destroy({
     where: {
       id: req.params.id
@@ -37,7 +40,7 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', authenticateUser, (req, res, next) => {
   CartItems.findOne({
     where: {
       id: req.params.id

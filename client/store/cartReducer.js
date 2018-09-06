@@ -32,7 +32,9 @@ export const setCart = userId => {
   return dispatch => {
     if (userId) {
       axios
-        .post('/api/cart', userId)
+        .post('/api/cart', userId, {
+	      	headers: { authorization: localStorage.getItem('token') }
+	    	})
         .then(res => {
           const {id, cartItems} = res.data[0]
           const items = res.data[1] ? [] : res.data[0].cartItems
@@ -129,7 +131,9 @@ export const addToCart = (menuItemId, cartId, userId, menuItem) => {
           menuItemId,
           cartId,
           userId
-        })
+        }, {
+	      	headers: { authorization: localStorage.getItem('token') }
+	    	})
         .then(res => {
           dispatch({
             type: ADD_ITEM,
@@ -174,7 +178,9 @@ export const deleteItem = (id, userId) => {
   return dispatch => {
     if (userId) {
       axios
-        .delete(`/api/cart_items/${id}`)
+        .delete(`/api/cart_items/${id}`, {
+	      	headers: { authorization: localStorage.getItem('token') }
+	    	})
         .then(() => {
           dispatch({
             type: DELETE_ITEM,
@@ -202,7 +208,9 @@ export const addQuantity = (id, quantity, userId) => {
   return dispatch => {
     if (userId) {
       axios
-        .put(`/api/cart_items/${id}`, {quantity})
+        .put(`/api/cart_items/${id}`, {quantity}, {
+	      	headers: { authorization: localStorage.getItem('token') }
+	    	})
         .then(res => {
           dispatch({
             type: ADD_QUANTITY,

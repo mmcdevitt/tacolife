@@ -7,6 +7,7 @@ class CartItem extends React.Component {
     const {
       item,
       deleteItem,
+      currentUser
     } = this.props;
 
     return (
@@ -23,7 +24,7 @@ class CartItem extends React.Component {
           <div className="cart-item-price">
             ${item.menuItem.price}
           </div>
-          <div className="remove-cart-item" onClick={() => deleteItem(item.id, null)}>
+          <div className="remove-cart-item" onClick={() => deleteItem(item.id, currentUser.id)}>
             <i className="fa fa-close"></i>
           </div>
         </div>
@@ -32,7 +33,15 @@ class CartItem extends React.Component {
   }
 }
 
-export default connect(null, {
+function mapStateToProps (state) {
+  const { currentUser } = state.Auth;
+
+  return {
+    currentUser
+  }
+}
+
+export default connect(mapStateToProps, {
   deleteItem,
   addQuantity
 })(CartItem)

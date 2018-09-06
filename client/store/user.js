@@ -26,30 +26,35 @@ const removeUser = () => ({type: REMOVE_USER})
 /**
  * THUNK CREATORS
  */
-export const me = () => async dispatch => {
-  try {
-    const res = await axios.get('/auth/me')
-    console.log(res)
-    dispatch(getUser(res.data || initialState))
-  } catch (err) {
-    console.error(err)
+export const me = () => {
+  return dispatch => {
+    axios
+      .get('/auth/me', {
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      .then(res => {
+        dispatch(getUser(res.data))
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
-  let res;
-  localStorage.setItem('token', 'adsf')
-  try {
-    res = await axios.post(`/auth/${method}`, {email, password})
-  } catch (authError) {
-    return dispatch(getUser({error: authError}))
-  }
+export const auth = (email, password, method) => {
+  return dispatch => {
+    axios.post(`/auth/${method}`, {
+      email, password
+    })
+    .then(res => {
+      dispatch(getUser(res.data.user))
 
-  try {
-    dispatch(getUser(res.data))
-    history.push('/home')
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr)
+      localStorage.setItem('token', res.data.token);
+      history.push('/home')
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
 
