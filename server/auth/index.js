@@ -22,16 +22,22 @@ router.post('/login', requireLogin, (req, res, next) => {
 })
 
 router.post('/register', async (req, res, next) => {
-  try {
-    const user = await User.create(req.body)
-    req.login(user, err => (err ? next(err) : res.json(user)))
-  } catch (err) {
-    if (err.name === 'SequelizeUniqueConstraintError') {
-      res.status(401).send('User already exists')
-    } else {
-      next(err)
-    }
+  const { email, password, username } = req.body;
+
+  // // Require email, password and username
+  if (!email || !password || !username) {
+    return res.status(422).send({ error: 'Email, password and username are required!' })
   }
+
+  // Create new user
+  User.create(req.body)
+    .then(user => {
+      res.send({ token: sessionsToken(user), user });
+    })
+    .catch(err => {
+      // Sends error if user exists
+      return next(err)
+    })
 })
 
 router.post('/logout', (req, res) => {

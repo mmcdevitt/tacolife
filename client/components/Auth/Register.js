@@ -29,7 +29,7 @@ class Register extends React.Component {
   onFormSubmit (formProps) {
     const { signinUser, history } = this.props;
 
-    signinUser(formProps, history);
+    signinUser(formProps, 'register');
   }
 
   renderAlert () {

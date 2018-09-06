@@ -48,11 +48,9 @@ export const me = () => {
   }
 }
 
-export const signinUser = ({username, password}, method) => {
+export const signinUser = (formProps, method) => {
   return dispatch => {
-    axios.post(`/auth/${method}`, {
-      username, password
-    })
+    axios.post(`/auth/${method}`, formProps)
     .then(res => {
       localStorage.setItem('token', res.data.token);
       console.log(res.data)

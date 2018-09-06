@@ -28,7 +28,7 @@ class App extends React.Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     const {currentUser} = this.props
     const token = localStorage.getItem('token')
- 
+
     if (nextProps.currentUser.id !== currentUser.id) {
       this.props.setCart(nextProps.currentUser.id, token)
     }
