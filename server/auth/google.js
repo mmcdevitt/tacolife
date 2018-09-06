@@ -33,7 +33,8 @@ const strategy = new GoogleStrategy(
     const name = profile.displayName
     const email = profile.emails[0].value
 
-    User.findOrCreate({
+    User.
+      findOrCreate({
       where: {googleId},
       defaults: {name, email}
     })
@@ -44,14 +45,21 @@ const strategy = new GoogleStrategy(
 
 passport.use(strategy)
 
-router.get('/', passport.authenticate('google', {scope: 'email'}))
+router.get('/', passport.authenticate('google', {scope: 'email'}), 
+  (req, res) => {
+    console.log('HELLO')
+  }
+)
 
 router.get(
   '/callback',
   passport.authenticate('google', {
     successRedirect: '/home',
     failureRedirect: '/login'
-  })
+  }),
+  (req, res) => {
+    console.log('ANYTHING')
+  }
 )
 
 
