@@ -32,14 +32,13 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 .container {
   width: 960px;
   margin: 0 auto;
+}
+
+.text-center {
+  text-align: center
 }
 
 h1, .h1 { font-size: 2.5rem; }

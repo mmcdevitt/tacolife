@@ -7,17 +7,19 @@ import Button from '../UI/Button/Button';
 import CartItems from './CartItems';
 import { setCart } from '../../store/cartReducer'
 import CartSummary from './CartSummary';
+import CheckoutButton from './CheckoutButton';
 
 
 class SidebarCart extends React.Component {
   renderCartItems () {
-    const {cartItems} = this.props;
+    const {cartItems, totalPrice} = this.props;
 
     if (cartItems.length) {
       return (
         <React.Fragment>
           <CartItems cartItems={cartItems} />
           <CartSummary />
+          <CheckoutButton totalPrice={totalPrice} />
         </React.Fragment>
       )
     } else {
@@ -34,18 +36,20 @@ class SidebarCart extends React.Component {
           <h6>Your Cart</h6>
         </div>
         {this.renderCartItems()}
-        <div className="cart-footer">
-          <Button primary block>Continue to Checkout</Button>
-        </div>
       </Aside>
     )
   }
 }
 
 function mapStateToProps (state) {
-  const { cartItems } = state.Cart;
+  const { 
+    cartItems,
+    totalPrice,
+  } = state.Cart;
+
   return {
     cartItems,
+    totalPrice,
   }
 }
 
