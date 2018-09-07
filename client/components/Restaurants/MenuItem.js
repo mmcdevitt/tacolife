@@ -4,6 +4,7 @@ import { Column } from '../Grid';
 import ModalLauncher from '../UI/Modal/ModalLauncher';
 import { addToCart } from '../../store/cartReducer';
 import AddToCart from '../UI/AddToCart/AddToCart';
+import { formatPrice } from '../../helpers'
 
 class MenuItem extends React.Component {
   customElement = (f) => {
@@ -15,7 +16,7 @@ class MenuItem extends React.Component {
           <h6>{item.name}</h6>
         </div>
         <div className="menu-item-price">
-          <span>${item.price}.00</span>
+          <span>{formatPrice(item.price)}</span>
         </div>
       </div>
     )

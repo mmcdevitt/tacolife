@@ -11,6 +11,7 @@ const Button = props => {
     color,
     double,
     block,
+    large,
     className 
   } = props;
 
@@ -22,11 +23,12 @@ const Button = props => {
     { primary },
     { success },
     { block },
+    { large },
     className
   )
 
   return (
-    <button className={classNames} onClick={props.onClick}>
+    <button className={classNames} onClick={props.onClick} action={props.action}>
       {props.children}
     </button>
   )

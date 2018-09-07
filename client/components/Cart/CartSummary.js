@@ -1,30 +1,50 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { formatPrice } from '../../helpers'
 
 class CartSummary extends React.Component {
   render () {
-    const {cartItems} = this.props;
+    const {
+      totalPrice, 
+      deliveryFee,
+      tax,
+      total,
+    } = this.props;
 
     return (
       <div className="cart-summary">
         <div className="cart-summary-item flex space-between">
           <div>Subtotal</div>
-          <div>$12.00</div>
+          <div>{formatPrice(totalPrice)}</div>
+        </div>
+        <div className="cart-summary-item flex space-between">
+          <div>Delivery Fee</div>
+          <div>{formatPrice(deliveryFee)}</div>
         </div>
         <div className="cart-summary-item flex space-between">
           <div>Tax</div>
-          <div>$1.32</div>
-        </div>
-        <div className="cart-summary-item flex space-between">
-          <div>Tip</div>
-          <div>$4.32</div>
+          <div>{formatPrice(tax)}</div>
         </div>
         <div className="cart-summary-item total flex space-between">
           <div>Total</div>
-          <div>$24.32</div>
+          <div>{formatPrice(total)}</div>
         </div>
       </div>
     )
   }
 }
 
-export default CartSummary;
+function mapStateToProps (state) {
+  const { 
+    totalPrice,
+  } = state.Cart;
+
+  return {
+    totalPrice,
+    deliveryFee: 2.75,
+    tax: 1.24,
+    total: 35
+  }
+}
+
+export default connect(mapStateToProps)(CartSummary);

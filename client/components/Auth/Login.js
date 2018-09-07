@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import BackButton from './BackButton';
 import {signinUser} from '../../store/user'
+import { Grid, Column, Nested } from "../Grid"; 
+import Button from '../UI/Button/Button'
+import './Login.css';
 
 class Login extends React.Component {
   componentWillMount () {
@@ -49,28 +52,37 @@ class Login extends React.Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
-        <div className="form-header center">
-          <h3>Login</h3>
-          <p>Please complete all fields.</p>
-        </div>
-        {this.renderAlert()}
-        <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
-          <Field type="text" component={this.renderField} placeholder="Username" label="username" name="username" />
-          <Field type="password" component={this.renderField} placeholder="Password" label="password" name="password" />
-          
-          <div className="form-group">
-            <button action="submit" className="btn btn-primary btn-block">Log in</button>
+      <Column width={12}>
+        <div className="form">
+          <div className="form-header center">
+            <h3>Login</h3>
+            <p>Please complete all fields.</p>
           </div>
-          <div className="center">
-            <Link to="/">Forgot password?</Link>
-            <div>
-              Don't have an account? <Link to="/register">Register</Link>
+          {this.renderAlert()}
+          <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
+            <Field type="text" component={this.renderField} placeholder="Username" label="username" name="username" />
+            <Field type="password" component={this.renderField} placeholder="Password" label="password" name="password" />
+            <div className="form-group flex space-between">
+              <div><input type="checkbox" /> Remember me</div>
+              <div className="center">
+                <Link to="/">Forgot password?</Link>
+              </div>
             </div>
+            <div className="form-group">
+              <Button primary block large action="submit">Log In</Button>
+            </div>
+          </form>
+          <div className="form-group">
+            <p className="text-small text-muted text-center">or</p>
           </div>
-        </form>
-        <a href="/auth/google">Login with Google</a>
-      </div>
+          <a href="/auth/google">
+            <Button block large className="google-btn">Login with Google</Button>
+          </a>
+          <div>
+            Don't have an account? <Link to="/register">Register</Link>
+          </div>
+        </div>
+      </Column>
     )
   }
 }

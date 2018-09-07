@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { deleteItem, addQuantity } from '../../store/cartReducer'
+import { formatPrice } from '../../helpers'
 
 class CartItem extends React.Component {
   render () {
@@ -22,7 +23,7 @@ class CartItem extends React.Component {
         </div>
         <div className="flex">
           <div className="cart-item-price">
-            ${item.menuItem.price}
+            {formatPrice(item.menuItem.price)}
           </div>
           <div className="remove-cart-item" onClick={() => deleteItem(item.id, currentUser.id)}>
             <i className="fa fa-close"></i>

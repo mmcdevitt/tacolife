@@ -16,7 +16,7 @@ const menuItemSeed = async () => {
     for (let i = 0; i < 100; i++) {
       data.push({
         name: faker.company.companyName(),
-        price: floor(random(0, 50)),
+        price: parseFloat(parseFloat(random(0, 50)).toFixed(2)),
         restaurantId: floor(random(1,10))
       })
     }
