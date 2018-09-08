@@ -63,8 +63,8 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.Auth.authenticated,
-    currentUser: state.Auth.currentUser
+    isLoggedIn: state.auth.authenticated,
+    currentUser: state.auth.currentUser
   }
 }
 

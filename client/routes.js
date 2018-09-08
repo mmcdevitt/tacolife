@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {UserHome} from './components'
 import Login from './components/Auth/Login'
@@ -24,14 +24,15 @@ class Routes extends Component {
         <Route path="/oauthredirect" component={OauthRedirect} />
         <Route path="/register" component={Register} />
         <Route path="/restaurants" component={RestaurantRoutes} />
-        {
+        <Route path="/admin" component={AuthenticateAdmin(Admin)} />
+        {/* {
           this.props.authenticated && (
             <Switch>
               <Route path="/admin" component={AuthenticateAdmin(Admin)} />
             </Switch>
-          )
+          ) 
         }
-        
+        <Route component={Home} /> */}
       </Switch>
     )
   }

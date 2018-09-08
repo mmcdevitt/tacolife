@@ -48,11 +48,11 @@ class AddToCart extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const {cartId, cartItems, isLoading} = state.Cart
+  const {cartId, cartItems, isLoading} = state.cart
 
   return {
     cartId,
-    user: state.Auth.currentUser,
+    user: state.auth.currentUser,
     cartItems,
     isCartLoading: isLoading
   }

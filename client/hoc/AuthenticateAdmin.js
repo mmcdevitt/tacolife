@@ -30,7 +30,7 @@ export default function (ComposedComponent) {
     const {authenticated} = state.Auth;
 
     return { 
-        currentUser: state.Auth.currentUser,
+        currentUser: state.auth.currentUser,
         authenticated,
     }
   }

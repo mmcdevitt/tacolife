@@ -5,7 +5,7 @@ import Cart from './cartReducer';
 
 export default {
   form: reduxForm,
-  Restaurant,
-  Auth,
-  Cart,
+  restaurant,
+  auth,
+  cart,
 }

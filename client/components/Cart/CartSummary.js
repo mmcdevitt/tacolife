@@ -37,7 +37,7 @@ class CartSummary extends React.Component {
 function mapStateToProps (state) {
   const { 
     totalPrice,
-  } = state.Cart;
+  } = state.cart;
 
   return {
     totalPrice,

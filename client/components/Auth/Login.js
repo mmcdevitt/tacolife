@@ -102,7 +102,7 @@ function validate (formProps) {
 }
 
 function mapStateToProps (state) {
-  const { authenticated, errorMessage, currentUser } = state.Auth; 
+  const { authenticated, errorMessage, currentUser } = state.auth; 
 
   return {
     authenticated,

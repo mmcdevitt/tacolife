@@ -41,7 +41,7 @@ function mapStateToProps (state) {
   const { 
     restaurants, 
     isLoading 
-  } = state.Restaurant
+  } = state.restaurant
 
   return {
     restaurants,

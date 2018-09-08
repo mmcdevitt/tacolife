@@ -35,7 +35,7 @@ class CartItem extends React.Component {
 }
 
 function mapStateToProps (state) {
-  const { currentUser } = state.Auth;
+  const { currentUser } = state.auth;
 
   return {
     currentUser

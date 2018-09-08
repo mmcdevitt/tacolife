@@ -65,7 +65,7 @@ class SingleRestaurant extends React.Component {
 }
 
 function mapStateToProps (state) {
-  const { cartItems, totalPrice } = state.Cart
+  const { cartItems, totalPrice } = state.cart
 
   return {
     cartItems,

@@ -45,7 +45,7 @@ function mapStateToProps (state) {
   const { 
     cartItems,
     totalPrice,
-  } = state.Cart;
+  } = state.cart;
 
   return {
     cartItems,
