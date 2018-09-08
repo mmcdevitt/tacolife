@@ -27,6 +27,7 @@ async function seed() {
       username: 'mmcdevi1', 
       email: 'mmcdevi1@gmail.com', 
       password: 'password',
+      superAdmin: true,
   })
   
   // await user.setRoles(await Roles.findById(1))

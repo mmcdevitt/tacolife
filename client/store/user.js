@@ -6,7 +6,7 @@ import {createLocalCart} from '../helpers'
  * ACTION TYPES
  */
 const REQUEST_USER = 'REQUEST_USER'
-export const FETCH_USER = 'FETCH_USER'
+const FETCH_USER = 'FETCH_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -15,7 +15,7 @@ const REMOVE_USER = 'REMOVE_USER'
 const initialState = {
   isLoading: false,
   currentUser: {},
-  authenticated: false,
+  authenticated: localStorage.getItem('token') ? true : false,
   errorMessage: '',
   token: ''
 }
@@ -44,10 +44,6 @@ export const me = () => {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then(res => {
-        if (res.data.roles.map(role => role.name).includes('super admin')) {
-          res.data.superAdmin = true
-        }
-
         dispatch({
           type: FETCH_USER,
           payload: {

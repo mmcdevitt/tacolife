@@ -37,6 +37,10 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  superAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   }
 })
 

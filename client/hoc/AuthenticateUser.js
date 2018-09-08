@@ -4,26 +4,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 export default function (ComposedComponent) {
-  class AuthenticateAdmin extends React.Component {
+  class AuthenticateUser extends React.Component {
     componentDidMount () {
       const { 
-        currentUser, 
-        history 
+        authenticated, 
       } = this.props; 
-
-      if (!currentUser.superAdmin) {
+      
+      if (!authenticated) {
         this.props.history.push('/')
       } 
     }
 
     componentDidUpdate (nextProps) {
-      if (!nextProps.currentUser.superAdmin) {
+      if (!nextProps.authenticated) {
         this.props.history.push('/')
       }
     }
 
     render () {
-      if (!this.props.currentUser.superAdmin) return ''
       return <ComposedComponent {...this.props} />
     }
   }
@@ -34,9 +32,9 @@ export default function (ComposedComponent) {
     } = state.auth;
 
     return { 
-        currentUser,
+        authenticated: state.auth.authenticated
     }
   }
 
-  return connect(mapStateToProps)(AuthenticateAdmin)
+  return connect(mapStateToProps)(AuthenticateUser)
 }

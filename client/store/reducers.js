@@ -1,7 +1,7 @@
 import { reducer as reduxForm } from 'redux-form';
-import Restaurant from './restaurantReducer';
-import Auth from './user';
-import Cart from './cartReducer';
+import restaurant from './restaurantReducer';
+import auth from './user';
+import cart from './cartReducer';
 
 export default {
   form: reduxForm,

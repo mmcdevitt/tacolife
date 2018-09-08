@@ -11,6 +11,7 @@ import HomeCom from './components/user-home'
 import OauthRedirect from './components/Auth/OauthRedirect'
 import Admin from './components/admin'
 import AuthenticateAdmin from './hoc/AuthenticateAdmin'
+import AuthenticateUser from './hoc/AuthenticateUser'
 
 /**
  * COMPONENT
@@ -24,7 +25,7 @@ class Routes extends Component {
         <Route path="/oauthredirect" component={OauthRedirect} />
         <Route path="/register" component={Register} />
         <Route path="/restaurants" component={RestaurantRoutes} />
-        <Route path="/admin" component={AuthenticateAdmin(Admin)} />
+        <Route path="/admin" component={AuthenticateUser(AuthenticateAdmin(Admin))} />
         {/* {
           this.props.authenticated && (
             <Switch>
@@ -40,8 +41,8 @@ class Routes extends Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.Auth.currentUser,
-    authenticated: state.Auth.authenticated
+    currentUser: state.auth.currentUser,
+    authenticated: state.auth.authenticated
   }
 }
 

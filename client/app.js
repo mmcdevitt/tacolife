@@ -48,8 +48,8 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.Auth.currentUser,
-    isUserLoading: state.Auth.isLoading,
+    currentUser: state.auth.currentUser,
+    isUserLoading: state.auth.isLoading,
   }
 }
 
