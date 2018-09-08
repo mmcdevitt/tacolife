@@ -10,11 +10,6 @@ import { Navbar } from '../components'
 const { fetchRestaurants, requestRestaurants } = actions;
 
 class Home extends React.Component {
-  componentDidMount () {
-    this.props.requestRestaurants()
-    this.props.fetchRestaurants()
-  }
-
   renderRestaurants () {
     if (this.props.isLoading) {
       return <div>Loading</div>
@@ -49,7 +44,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps, {
-  fetchRestaurants,
-  requestRestaurants,
-})(Home);
+export default connect(mapStateToProps)(Home);

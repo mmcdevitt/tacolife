@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
-
-import {Navbar} from './components'
 import Routes from './routes'
 import Layout from './components/Layout/Layout';
 import {setCart, requestCart, setLocalCart} from './store/cartReducer'
 import { me, requestUser } from './store'
-import axios from 'axios'
-import store from './store'
+import actions from './actions/restaurant/actions'
+
+const { fetchRestaurants, requestRestaurants } = actions;
 
 class App extends React.Component {
   componentDidMount () {
@@ -20,11 +19,16 @@ class App extends React.Component {
       this.props.me()
     }
 
+    this.props.requestRestaurants()
+    this.props.fetchRestaurants()
+
     this.props.requestCart();
 
     if (!currentUser.authenticated) {
       this.props.setLocalCart()
-    }
+    } 
+
+    this.props.setCart(currentUser.id, token)
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -37,7 +41,6 @@ class App extends React.Component {
   }
 
   render () {
-    if (this.props.isUserLoading) return ''
     return (
       <Layout>
         <Routes />
@@ -60,5 +63,7 @@ export default withRouter(
     me,
     setCart,
     requestUser,
+    fetchRestaurants,
+    requestRestaurants,
   })(App)
 )

@@ -62,7 +62,7 @@ export const signinUser = (formProps, method) => {
     axios.post(`/auth/${method}`, formProps)
     .then(res => {
       localStorage.setItem('token', res.data.token);
-      console.log(res.data)
+
       dispatch({
         type: FETCH_USER,
         payload: {

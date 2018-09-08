@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import AuthenticateUser from './AuthenticateUser'
 
 export default function (ComposedComponent) {
   class AuthenticateAdmin extends React.Component {
@@ -38,5 +39,5 @@ export default function (ComposedComponent) {
     }
   }
 
-  return connect(mapStateToProps)(AuthenticateAdmin)
+  return connect(mapStateToProps)(AuthenticateUser(AuthenticateAdmin))
 }

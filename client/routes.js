@@ -9,7 +9,7 @@ import Home from './containers/Home';
 import RestaurantRoutes from './components/Restaurants/routes';
 import HomeCom from './components/user-home'
 import OauthRedirect from './components/Auth/OauthRedirect'
-import Admin from './components/admin'
+import AdminRoutes from './components/Admin/AdminRoutes'
 import AuthenticateAdmin from './hoc/AuthenticateAdmin'
 import AuthenticateUser from './hoc/AuthenticateUser'
 
@@ -25,15 +25,7 @@ class Routes extends Component {
         <Route path="/oauthredirect" component={OauthRedirect} />
         <Route path="/register" component={Register} />
         <Route path="/restaurants" component={RestaurantRoutes} />
-        <Route path="/admin" component={AuthenticateUser(AuthenticateAdmin(Admin))} />
-        {/* {
-          this.props.authenticated && (
-            <Switch>
-              <Route path="/admin" component={AuthenticateAdmin(Admin)} />
-            </Switch>
-          ) 
-        }
-        <Route component={Home} /> */}
+        <Route path="/admin" component={AuthenticateAdmin(AdminRoutes)} />
       </Switch>
     )
   }

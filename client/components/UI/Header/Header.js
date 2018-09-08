@@ -50,8 +50,8 @@ class Header extends React.Component {
               <Link to="/">Taco Life</Link>
             </div>
           </Column>
-          <Column width={10}></Column>
-          <Column flex className="justify-content-end" width={1}>
+          <Column width={9}></Column>
+          <Column flex className="justify-content-end" width={2}>
             {this.renderAdminLinks()}
             {this.renderSessionLinks()}
           </Column>
