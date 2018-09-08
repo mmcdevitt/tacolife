@@ -5,13 +5,15 @@ import {createLocalCart} from '../helpers'
 /**
  * ACTION TYPES
  */
-const FETCH_USER = 'FETCH_USER'
+const REQUEST_USER = 'REQUEST_USER'
+export const FETCH_USER = 'FETCH_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
  * INITIAL STATE
  */
 const initialState = {
+  isLoading: false,
   currentUser: {},
   authenticated: false,
   errorMessage: '',
@@ -27,6 +29,14 @@ const removeUser = () => ({type: REMOVE_USER})
 /**
  * THUNK CREATORS
  */
+export const requestUser = () => {
+  return dispatch => {
+    dispatch({
+      type: REQUEST_USER
+    })
+  }
+}
+
 export const me = () => {
   return dispatch => {
     axios
@@ -34,11 +44,14 @@ export const me = () => {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then(res => {
+        if (res.data.roles.map(role => role.name).includes('super admin')) {
+          res.data.superAdmin = true
+        }
+
         dispatch({
           type: FETCH_USER,
           payload: {
             user: res.data,
-            token: res.data.token
           }
         })
       })
@@ -86,9 +99,15 @@ export const logout = () => async dispatch => {
  */
 export default function(state=initialState, action) {
   switch (action.type) {
+    case REQUEST_USER:
+      return {
+        ...state,
+        isLoading: true,
+      }
     case FETCH_USER:
       return {
         ...state,
+        isLoading: false,
         currentUser: action.payload.user,
         authenticated: true,
         token: action.payload.token

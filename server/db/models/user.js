@@ -3,6 +3,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const bluebird = require("bluebird");
 const bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
+const Roles = require('./')
 
 const User = db.define('user', {
   firstName: { 

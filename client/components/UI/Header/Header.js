@@ -17,6 +17,14 @@ class Header extends React.Component {
     this.props.resetCart()
   }
 
+  renderAdminLinks () {
+    const { currentUser } = this.props;
+
+    if (currentUser.superAdmin) {
+      return <Link to="/admin">Super Admin</Link>
+    }
+  }
+
   renderSessionLinks() {
     const {isLoggedIn} = this.props
 
@@ -44,6 +52,7 @@ class Header extends React.Component {
           </Column>
           <Column width={10}></Column>
           <Column flex className="justify-content-end" width={1}>
+            {this.renderAdminLinks()}
             {this.renderSessionLinks()}
           </Column>
         </Nested>

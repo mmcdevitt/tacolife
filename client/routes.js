@@ -9,6 +9,8 @@ import Home from './containers/Home';
 import RestaurantRoutes from './components/Restaurants/routes';
 import HomeCom from './components/user-home'
 import OauthRedirect from './components/Auth/OauthRedirect'
+import Admin from './components/admin'
+import AuthenticateAdmin from './hoc/AuthenticateAdmin'
 
 /**
  * COMPONENT
@@ -22,11 +24,24 @@ class Routes extends Component {
         <Route path="/oauthredirect" component={OauthRedirect} />
         <Route path="/register" component={Register} />
         <Route path="/restaurants" component={RestaurantRoutes} />
+        {
+          this.props.authenticated && (
+            <Switch>
+              <Route path="/admin" component={AuthenticateAdmin(Admin)} />
+            </Switch>
+          )
+        }
+        
       </Switch>
     )
   }
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
-export default withRouter(Routes)
+function mapStateToProps (state) {
+  return {
+    currentUser: state.Auth.currentUser,
+    authenticated: state.Auth.authenticated
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Routes))

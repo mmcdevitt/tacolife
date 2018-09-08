@@ -6,18 +6,20 @@ import {Navbar} from './components'
 import Routes from './routes'
 import Layout from './components/Layout/Layout';
 import {setCart, requestCart, setLocalCart} from './store/cartReducer'
-import {me} from './store'
-
-const token = localStorage.getItem('token')
+import { me, requestUser } from './store'
+import axios from 'axios'
+import store from './store'
 
 class App extends React.Component {
   componentDidMount () {
     const {currentUser} = this.props
+    const token = localStorage.getItem('token')
 
     if (token) {
+      this.props.requestUser()
       this.props.me()
     }
-      
+
     this.props.requestCart();
 
     if (!currentUser.authenticated) {
@@ -35,6 +37,7 @@ class App extends React.Component {
   }
 
   render () {
+    if (this.props.isUserLoading) return ''
     return (
       <Layout>
         <Routes />
@@ -45,7 +48,8 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.Auth.currentUser
+    currentUser: state.Auth.currentUser,
+    isUserLoading: state.Auth.isLoading,
   }
 }
 
@@ -55,5 +59,6 @@ export default withRouter(
     setLocalCart,
     me,
     setCart,
+    requestUser,
   })(App)
 )
