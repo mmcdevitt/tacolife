@@ -2,19 +2,36 @@
 
 const db = require('../server/db')
 
-const {User} = require('../server/db/models')
+const {User, Roles} = require('../server/db/models')
 const restaurantSeed = require('../server/seeds/restaurantSeeds')
 const menuSeed = require('../server/seeds/menuSeeds')
+const roleSeed = require('../server/seeds/roleSeeds')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({firstName: 'Michael', lastName: 'McDevitt', username: 'mmcdevi1', email: 'mmcdevi1@gmail.com', password: 'password'}),
-  ])
+  // const users = await Promise.all([
+  //   User.create({
+  //     firstName: 'Michael', 
+  //     lastName: 'McDevitt', 
+  //     username: 'mmcdevi1', 
+  //     email: 'mmcdevi1@gmail.com', 
+  //     password: 'password',
+  //   }
+  // ])
 
-  console.log(`seeded ${users.length} users`)
+  const user = await User.create({
+    firstName: 'Michael', 
+      lastName: 'McDevitt', 
+      username: 'mmcdevi1', 
+      email: 'mmcdevi1@gmail.com', 
+      password: 'password',
+  })
+  
+  // await user.setRoles(await Roles.findById(1))
+
+  console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)
 }
 
@@ -27,6 +44,7 @@ async function runSeed() {
     await seed()
     await restaurantSeed()
     await menuSeed()
+    await roleSeed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1

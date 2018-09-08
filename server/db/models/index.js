@@ -4,6 +4,7 @@ const Category = require('./category')
 const MenuItem = require('./menuItem')
 const Cart = require('./cart')
 const CartItems = require('./cartItems')
+const Roles = require('./roles')
 
 // Relationships
 User.belongsToMany(Restaurant, {through: 'userrestaurant'})
@@ -30,6 +31,9 @@ MenuItem.hasMany(CartItems)
 CartItems.belongsTo(User)
 User.hasMany(CartItems)
 
+Roles.belongsToMany(User, {through: 'userrole'})
+User.belongsToMany(Roles, {through: 'userrole'})
+
 module.exports = {
   User,
   Restaurant,
@@ -37,4 +41,5 @@ module.exports = {
   MenuItem,
   Cart,
   CartItems,
+  Roles,
 }

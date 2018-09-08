@@ -4,6 +4,7 @@ const passport = require('passport')
 const User = require('../db/models/user')
 const jwt = require('jwt-simple');
 const keys = require('../../config/keys');
+const {Roles} = require('../db/models')
 
 function sessionsToken (user) {
   const timestamp = new Date().getTime();
@@ -47,7 +48,21 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', authenticateUser, (req, res) => {
-  res.json(req.user)
+  // res.json(req.user)
+
+  User
+    .findOne({
+      where: {
+        id: req.user.id
+      },
+      include: [
+        {model: Roles}
+      ]
+    })
+    .then(user => {
+      res.json(user)
+    })
+    .catch(err => console.log(err))
 })
 
 router.use('/google', require('./google'))
