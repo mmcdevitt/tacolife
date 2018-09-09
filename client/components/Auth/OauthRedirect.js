@@ -3,15 +3,21 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import queryString from 'query-string'
 import {me} from '../../store'
+import {fetchSubdomain} from '../../helpers'
 
 class OauthRedirect extends React.Component {
   componentDidMount () {
     if (location.search && location.search.length > 0) {
       localStorage.setItem('token', queryString.parse(location.search).token)
     }
-    console.log('OAUTH')
+
     this.props.me()
-    this.props.history.push('/')
+
+    if (fetchSubdomain() && fetchSubdomain() !== 'www') {
+      this.props.history.push('/admin')
+    } else {
+      this.props.history.push('/')
+    }
   }
 
   render () {

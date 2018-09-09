@@ -19,7 +19,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps (state) {
-  const { restaurants } = state.restaurant;
+  const { restaurants } = state.restaurants;
 
   return {
     restaurants

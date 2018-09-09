@@ -7,6 +7,9 @@ import Login from '../Auth/Login';
 import { urlHelper, fetchSubdomain } from '../../helpers';
 import OauthRedirect from '../Auth/OauthRedirect';
 import {fetchRestaurantBySlug, requestRestaurant} from '../../actions/restaurant/actions';
+import Aside from '../UI/Aside/Aside';
+import RestaurantAdmin from '../RestaurantAdmin/RestaurantAdmin'
+import AuthenticateUser from '../../hoc/AuthenticateUser'
 
 const Test = () => {
   return <div>Test</div>
@@ -41,11 +44,15 @@ class RestaurantLayout extends React.Component {
       <React.Fragment>
         <Navbar />
         <Grid gap={0}>
-          <Switch>
-            <Route exact path="/" component={Test} />
-            <Route path="/login" component={Login} />
-            <Route path="/oauthredirect" component={OauthRedirect} />
-          </Switch>
+          <Aside border="right" />
+          <Column className="content" width={9}>
+            <Switch>
+              <Route exact path="/" component={Test} />
+              <Route path="/login" component={Login} />
+              <Route path="/oauthredirect" component={OauthRedirect} />
+              <Route path="/admin" component={AuthenticateUser(RestaurantAdmin)} />
+            </Switch>
+          </Column>
         </Grid>
       </React.Fragment>
     )

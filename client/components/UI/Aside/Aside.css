@@ -6,3 +6,7 @@
   border-left: 1px solid #dcdcdc;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.18);
 }
+
+.border-right {
+  border-right: 1px solid #dcdcdc;
+}
