@@ -10,6 +10,7 @@ import {fetchRestaurantBySlug, requestRestaurant} from '../../actions/restaurant
 import Aside from '../UI/Aside/Aside';
 import RestaurantAdmin from '../RestaurantAdmin/RestaurantAdmin'
 import AuthenticateUser from '../../hoc/AuthenticateUser'
+import RestaurantAdminRoutes from '../RestaurantAdmin/RestaurantAdminRoutes';
 
 const Test = () => {
   return <div>Test</div>
@@ -32,10 +33,7 @@ class RestaurantLayout extends React.Component {
     const { currentUser, auth } = this.props;
 
     if (auth) {
-      if (currentUser.restaurants.map(r => r.slug).includes(fetchSubdomain())) {
-        console.log('good')
-      } else {
-        // window.location = urlHelper()
+      if (!currentUser.restaurants.map(r => r.slug).includes(fetchSubdomain())) {
         return 'This restaurant does not exist'
       }
     }
@@ -44,15 +42,12 @@ class RestaurantLayout extends React.Component {
       <React.Fragment>
         <Navbar />
         <Grid gap={0}>
-          <Aside border="right" />
-          <Column className="content" width={9}>
-            <Switch>
-              <Route exact path="/" component={Test} />
-              <Route path="/login" component={Login} />
-              <Route path="/oauthredirect" component={OauthRedirect} />
-              <Route path="/admin" component={AuthenticateUser(RestaurantAdmin)} />
-            </Switch>
-          </Column>
+          <Switch>
+            <Route exact path="/" component={Test} />
+            <Route path="/login" component={Login} />
+            <Route path="/oauthredirect" component={OauthRedirect} />
+            <Route path="/admin" component={RestaurantAdminRoutes} />
+          </Switch>
         </Grid>
       </React.Fragment>
     )

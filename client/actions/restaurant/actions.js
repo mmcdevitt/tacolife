@@ -11,6 +11,8 @@ export const NEW_RESTAURANT      = 'NEW_RESTAURANT';
 export const DELETE_RESTAURANT   = 'DELETE_RESTAURANT';
 export const EDIT_RESTAURANT     = 'EDIT_RESTAURANT';
 
+export const NEW_MENU_ITEM = 'NEW_MENU_ITEM'
+
 
 export const requestRestaurant = () => {
   return dispatch => {
@@ -94,6 +96,22 @@ export const deleteRestaurant = (id) => {
         dispatch({
           type: DELETE_RESTAURANT,
           payload: id,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
+export const newMenuItem = (data) => {
+  return dispatch => {
+    axios
+      .post('/api/menu_items', data)
+      .then(res => {
+        dispatch({
+          type: NEW_MENU_ITEM,
+          payload: res.data,
         })
       })
       .catch(err => {

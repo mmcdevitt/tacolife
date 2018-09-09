@@ -5,6 +5,7 @@ import {
 	NEW_RESTAURANT,
 	DELETE_RESTAURANT,
   EDIT_RESTAURANT,
+  NEW_MENU_ITEM,
 } from '../actions/restaurant/actions';
 
 const initialState = {
@@ -53,7 +54,15 @@ const reducer = (state=initialState, action) => {
 					}
 					return restaurant
 				})
-			}
+      }
+    case NEW_MENU_ITEM:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          menuItems: [...state.data.menuItems, action.payload]
+        }
+      }
 		default: 
 			return state;
 	}
