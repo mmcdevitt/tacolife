@@ -1,30 +1,50 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux';
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom';
 import { Grid, Column, Nested } from '../Grid';
-import { Navbar } from '../index'
-import Login from '../Auth/Login'
+import { Navbar } from '../index';
+import Login from '../Auth/Login';
+import { urlHelper, fetchSubdomain } from '../../helpers';
+import OauthRedirect from '../Auth/OauthRedirect';
+import {fetchRestaurantBySlug, requestRestaurant} from '../../actions/restaurant/actions';
+
+const Test = () => {
+  return <div>Test</div>
+}
 
 class RestaurantLayout extends React.Component {
   componentDidMount () {
-    const { restaurants } = this.props;
+    this.props.requestRestaurant()
+    this.props.fetchRestaurantBySlug(fetchSubdomain())
+  }
 
-    const subdomain = window.location.host.split('.')[0]
-    const restaurantNames = restaurants.map(res => res.slug)
-
-    if (!restaurantNames.includes(subdomain)) {
-      console.log('restaurant does not exist')
-    } else {
-      console.log('restuarant exist')
+  render404 () {
+    const { restaurantNames } = this.props;
+    if (!restaurantNames.includes(fetchSubdomain())) {
+      return 'This restaurant does not exist'
     }
   }
 
   render () {
+    const { currentUser, auth } = this.props;
+
+    if (auth) {
+      if (currentUser.restaurants.map(r => r.slug).includes(fetchSubdomain())) {
+        console.log('good')
+      } else {
+        // window.location = urlHelper()
+        return 'This restaurant does not exist'
+      }
+    }
+
     return (
       <React.Fragment>
+        <Navbar />
         <Grid gap={0}>
           <Switch>
+            <Route exact path="/" component={Test} />
             <Route path="/login" component={Login} />
+            <Route path="/oauthredirect" component={OauthRedirect} />
           </Switch>
         </Grid>
       </React.Fragment>
@@ -36,12 +56,21 @@ function mapStateToProps (state) {
   const { 
     restaurants, 
     isLoading 
-  } = state.restaurant
+  } = state.restaurants
+
+  // const { currentUser } = state.auth
 
   return {
     restaurants,
     isLoading,
+    currentUser: state.auth.currentUser,
+    auth: !!state.auth.currentUser.id,
+    restaurantNames: restaurants.map(r => r.slug)
   }
 }
 
-export default connect(mapStateToProps)(RestaurantLayout)
+export default withRouter(
+  connect(mapStateToProps, {
+    fetchRestaurantBySlug,
+    requestRestaurant
+  })(RestaurantLayout))

@@ -10,12 +10,6 @@ import './socket'
 
 const { persistor, store } = storeConfigure()
 
-const Subdomain = () => {
-  return (
-    <div>{subdomain[0]}</div>
-  )
-}
-
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

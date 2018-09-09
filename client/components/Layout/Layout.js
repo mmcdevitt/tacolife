@@ -10,9 +10,7 @@ class Layout extends React.Component {
   renderLayout () {
     if (subdomain.length >= 3 && subdomain[0] !== 'www') {
       return (
-        <RestaurantLayout>
-          {this.props.children}
-        </RestaurantLayout>
+        <RestaurantLayout />
       )
     } else {
       return (

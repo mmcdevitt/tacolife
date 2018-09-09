@@ -1,13 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Grid, Column, Nested } from "../components/Grid";
+import { Column, Nested } from "../components/Grid";
 import axios from 'axios';
-import actions from '../actions/restaurant/actions'
+// import actions from '../actions/restaurant/actions'
 import Restaurants from '../components/Restaurants/Restaurants';
 import Aside from '../components/UI/Aside/Aside';
-import { Navbar } from '../components'
-
-const { fetchRestaurants, requestRestaurants } = actions;
 
 class Home extends React.Component {
   renderRestaurants () {
@@ -36,7 +33,7 @@ function mapStateToProps (state) {
   const { 
     restaurants, 
     isLoading 
-  } = state.restaurant
+  } = state.restaurants
 
   return {
     restaurants,

@@ -5,9 +5,7 @@ import Routes from './routes'
 import Layout from './components/Layout/Layout';
 import {setCart, requestCart, setLocalCart} from './store/cartReducer'
 import { me, requestUser } from './store'
-import actions from './actions/restaurant/actions'
-
-const { fetchRestaurants, requestRestaurants } = actions;
+import {fetchRestaurants, requestRestaurants} from './actions/restaurants/actions'
 
 class App extends React.Component {
   componentDidMount () {

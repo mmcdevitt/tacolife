@@ -1,31 +1,37 @@
-import actions from '../actions/restaurant/actions';
-
-const { 
-	FETCH_RESTAURANTS,
-	REQUEST_RESTAURANTS,
+import { 
+  FETCH_RESTAURANT_REQUEST,
+  FETCH_RESTAURANT_SUCCESS,
+  FETCH_RESTAURANT_FAILURE,
 	NEW_RESTAURANT,
 	DELETE_RESTAURANT,
-	EDIT_RESTAURANT,
-} = actions
+  EDIT_RESTAURANT,
+} from '../actions/restaurant/actions';
 
 const initialState = {
-	restaurants: [],
-	isLoading: false
+	isLoading: false,
+  data: {},
+  error: {}
 }
 
 const reducer = (state=initialState, action) => {
 	switch (action.type) {
-		case REQUEST_RESTAURANTS:
-			return {
-				...state,
-				isLoading: true,
-			}
-		case FETCH_RESTAURANTS:
-			return {
-				...state,
-				restaurants: action.payload,
-				isLoading: false,
-			}
+    case FETCH_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case FETCH_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+        isLoading: false,
+      }
+    case FETCH_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      }
 		case NEW_RESTAURANT:
 			return {
 				...state,

@@ -10,7 +10,7 @@ import localForage from 'localforage'
 const persistConfig = {
   key: 'root',
   storage: localForage,
-  whitelist: ['auth', 'restaurant']
+  whitelist: ['auth']
 }
 
 const reducer = combineReducers({

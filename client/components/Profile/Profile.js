@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { urlHelper } from '../../helpers';
+import { selectRestaurant } from '../../store/restaurantsReducer'
 
 class Profile extends React.Component {
   render () {
     const { currentUser } = this.props;
-    const hostname = window.location.hostname.split('.').slice(1).join('.')
-
+    
     return (
       <div>
         Profile
@@ -15,7 +16,7 @@ class Profile extends React.Component {
             currentUser.restaurants.map(restaurant => {
               return (
                 <div key={restaurant.id}>
-                  <a href={`http://${restaurant.slug}.${hostname}:8080`}>{restaurant.name}</a>
+                  <a href={urlHelper(restaurant.slug)}>{restaurant.name}</a>
                 </div>
               )
             })
@@ -33,4 +34,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, {selectRestaurant})(Profile)

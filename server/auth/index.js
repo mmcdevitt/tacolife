@@ -19,7 +19,20 @@ router.post('/login', requireLogin, (req, res, next) => {
     res.send({error: 'No user'})
   }
 
-  res.send({token: sessionsToken(req.user), user: req.user})
+  User
+    .findOne({
+      where: {
+        id: req.user.id
+      },
+      include: [
+        {model: Roles},
+        {model: Restaurant}
+      ]
+    })
+    .then(user => {
+      res.send({token: sessionsToken(user), user: user})
+    })
+    .catch(err => console.log(err))
 })
 
 router.post('/register', async (req, res, next) => {

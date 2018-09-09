@@ -9,6 +9,7 @@ class OauthRedirect extends React.Component {
     if (location.search && location.search.length > 0) {
       localStorage.setItem('token', queryString.parse(location.search).token)
     }
+    console.log('OAUTH')
     this.props.me()
     this.props.history.push('/')
   }
