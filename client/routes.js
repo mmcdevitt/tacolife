@@ -12,6 +12,7 @@ import OauthRedirect from './components/Auth/OauthRedirect'
 import AdminRoutes from './components/Admin/AdminRoutes'
 import AuthenticateAdmin from './hoc/AuthenticateAdmin'
 import AuthenticateUser from './hoc/AuthenticateUser'
+import Profile from './components/Profile/Profile'
 
 /**
  * COMPONENT
@@ -20,12 +21,13 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/"        component={Home} />
+        <Route path="/login"         component={Login} />
         <Route path="/oauthredirect" component={OauthRedirect} />
-        <Route path="/register" component={Register} />
-        <Route path="/restaurants" component={RestaurantRoutes} />
-        <Route path="/admin" component={AuthenticateAdmin(AdminRoutes)} />
+        <Route path="/register"      component={Register} />
+        <Route path="/restaurants"   component={RestaurantRoutes} />
+        <Route path="/profile"       component={AuthenticateUser(Profile)} />
+        <Route path="/admin"         component={AuthenticateAdmin(AdminRoutes)} />
       </Switch>
     )
   }

@@ -34,6 +34,10 @@ const Restaurant = db.define('restaurant', {
 
   description: {
     type: Sequelize.TEXT
+  },
+
+  slug: {
+    type: Sequelize.TEXT
   }
 })
 

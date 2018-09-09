@@ -23,11 +23,19 @@ async function seed() {
 
   const user = await User.create({
     firstName: 'Michael', 
-      lastName: 'McDevitt', 
-      username: 'mmcdevi1', 
-      email: 'mmcdevi1@gmail.com', 
-      password: 'password',
-      superAdmin: true,
+    lastName: 'McDevitt', 
+    username: 'mmcdevi1', 
+    email: 'mmcdevi1@gmail.com', 
+    password: 'password',
+    superAdmin: true,
+  })
+
+  await User.create({
+    firstName: 'Michael', 
+    lastName: 'McDevitt', 
+    username: 'mmcdevi2', 
+    email: 'mmcdevi2@gmail.com', 
+    password: 'password',
   })
   
   // await user.setRoles(await Roles.findById(1))

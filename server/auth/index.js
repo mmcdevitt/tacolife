@@ -4,7 +4,7 @@ const passport = require('passport')
 const User = require('../db/models/user')
 const jwt = require('jwt-simple');
 const keys = require('../../config/keys');
-const {Roles} = require('../db/models')
+const {Roles, Restaurant} = require('../db/models')
 
 function sessionsToken (user) {
   const timestamp = new Date().getTime();
@@ -56,7 +56,8 @@ router.get('/me', authenticateUser, (req, res) => {
         id: req.user.id
       },
       include: [
-        {model: Roles}
+        {model: Roles},
+        {model: Restaurant}
       ]
     })
     .then(user => {

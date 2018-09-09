@@ -1,15 +1,32 @@
 import React from 'react';
-import { Grid, Column, Nested } from '../Grid';
-import { Navbar } from '../index'
+import {
+  DefaultLayout,
+  RestaurantLayout,
+} from './'
+
+const subdomain = window.location.host.split('.')
 
 class Layout extends React.Component {
+  renderLayout () {
+    if (subdomain.length >= 3 && subdomain[0] !== 'www') {
+      return (
+        <RestaurantLayout>
+          {this.props.children}
+        </RestaurantLayout>
+      )
+    } else {
+      return (
+        <DefaultLayout>
+          {this.props.children}
+        </DefaultLayout>
+      )
+    }
+  }
+
   render () {
     return (
       <React.Fragment>
-        <Navbar />
-        <Grid gap={0}>
-          {this.props.children}
-        </Grid>
+        {this.renderLayout()}
       </React.Fragment>
     )
   }

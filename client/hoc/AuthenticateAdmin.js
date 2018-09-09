@@ -35,7 +35,7 @@ export default function (ComposedComponent) {
     } = state.auth;
 
     return { 
-        currentUser,
+      currentUser,
     }
   }
 

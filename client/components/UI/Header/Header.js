@@ -11,8 +11,6 @@ import Button from '../Button/Button';
 
 class Header extends React.Component {
   handleLogOut = () => {
-    // const {logout} = this.props
-
     this.props.logout()
     this.props.resetCart()
   }
