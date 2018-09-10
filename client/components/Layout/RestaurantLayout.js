@@ -41,14 +41,14 @@ class RestaurantLayout extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        <Grid gap={0}>
+        <Column flex className="main-content">
           <Switch>
             <Route exact path="/" component={Test} />
             <Route path="/login" component={Login} />
             <Route path="/oauthredirect" component={OauthRedirect} />
             <Route path="/admin" component={RestaurantAdminRoutes} />
           </Switch>
-        </Grid>
+        </Column>
       </React.Fragment>
     )
   }

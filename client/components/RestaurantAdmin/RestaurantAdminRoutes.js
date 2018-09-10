@@ -17,7 +17,7 @@ class RestaurantAdminRoutes extends React.Component {
 
     return (
       <React.Fragment>
-        <Aside border="right" />
+        <Aside border="right">hello</Aside>
         <Switch>
           <Route exact path={`${path}`} component={Dashboard} />
           <Route path={`${path}/products/new`} component={NewMenuItem} />

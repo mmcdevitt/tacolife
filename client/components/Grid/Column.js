@@ -27,11 +27,12 @@ class Column extends React.Component {
     const { 
       mergeRows, 
       className, 
-      flex 
+      flex,
+      width,
     } = this.props;
 
     const classNames = cs(
-      `${this.width()}-cols`,
+      width ? `${this.width()}-cols` : null,
       mergeRows ? `merge-${nums[mergeRows]}-rows` : null,
       { flex },
       className

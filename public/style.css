@@ -37,6 +37,11 @@ nav a {
   margin: 0 auto;
 }
 
+.main-content {
+  padding-top: 53px;
+  height: 100vh;;
+}
+
 .text-center {
   text-align: center
 }
