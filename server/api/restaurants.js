@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Restaurant, MenuItem} = require('../db/models')
+const {Restaurant, MenuItem, Category} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -18,6 +18,10 @@ router.get('/:id', async (req, res, next) => {
       },
       include: [
         {
+          model: Category,
+          include: [{model: MenuItem}]
+        },
+        {
           model: MenuItem
         }
       ]
@@ -35,6 +39,10 @@ router.get('/slug/:slug', async (req, res, next) => {
         slug: req.params.slug
       },
       include: [
+        {
+          model: Category,
+          include: [{model: MenuItem}]
+        },
         {
           model: MenuItem
         }

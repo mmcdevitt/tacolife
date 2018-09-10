@@ -13,6 +13,8 @@ export const EDIT_RESTAURANT     = 'EDIT_RESTAURANT';
 
 export const NEW_MENU_ITEM = 'NEW_MENU_ITEM'
 
+export const NEW_CATEGORY = 'NEW_CATEGORY'
+
 
 export const requestRestaurant = () => {
   return dispatch => {
@@ -105,7 +107,6 @@ export const deleteRestaurant = (id) => {
 }
 
 export const newMenuItem = (data) => {
-  console.log('actions', data)
   return dispatch => {
     axios
       .post('/api/menu_items', data, {
@@ -114,6 +115,24 @@ export const newMenuItem = (data) => {
       .then(res => {
         dispatch({
           type: NEW_MENU_ITEM,
+          payload: res.data,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
+export const newCategory = (data) => {
+  return dispatch => {
+    axios
+      .post('/api/categories', data, {
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      .then(res => {
+        dispatch({
+          type: NEW_CATEGORY,
           payload: res.data,
         })
       })

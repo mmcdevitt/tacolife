@@ -32,7 +32,7 @@ export default function (ComposedComponent) {
     } = state.auth;
 
     return { 
-        authenticated: state.auth.authenticated
+      authenticated: state.auth.authenticated
     }
   }
 

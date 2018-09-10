@@ -1,15 +1,30 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, reset } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {newMenuItem} from '../../actions/restaurant/actions'
+import {newMenuItem, newCategory} from '../../actions/restaurant/actions'
 import Button from '../UI/Button/Button'
+import {Column} from '../Grid'
+
+import './MenuItems.css'
 
 class NewMenuItemForm extends React.Component {
+  constructor () {
+    super()
+
+    this.state = {
+      toggle: false
+    }
+  }
+
   onFormSubmit (data) {
     const { history } = this.props;
-    console.log('submit', data)
-    this.props.newMenuItem(data)
+    // this.props.newMenuItem(data)
+    this.props.newCategory({
+      ...data,
+      restaurantId: this.props.restaurant.id
+    })
+
   }
 
   renderField (field) {
@@ -25,20 +40,54 @@ class NewMenuItemForm extends React.Component {
     )
   }
 
+  renderForm = () => {
+    this.setState({
+      toggle: !this.state.toggle 
+    })
+  }
+
   render () {
     const {handleSubmit} = this.props;
     
     return (
       <div>
-        <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
-          <Field type="text" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="name" />
-          <Field type="number" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="price" /> 
-          <Button primary block large action="submit">Submit</Button>
-        </form>
+        <Column flex className="categories">
+          {
+            this.props.restaurant.categories.map(cat => {
+              return (
+                <div key={cat.id} className="category">
+                  {cat.name}
+                  <div>
+                    {
+                      cat.menuItems.map(item => {
+                        return <div key={item.id}>{item.name}</div>
+                      })
+                    }
+                  </div>
+                </div>
+              )
+            })
+          }
+        <div>
+          <button onClick={this.renderForm}>New Category</button>
+          {
+            this.state.toggle && (
+              <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
+                <Field type="text" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="name" />
+                {/* <Field type="number" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="price" />  */}
+                <Button primary block large action="submit">Submit</Button>
+              </form>
+            )
+          }
+        </div>
+        </Column>
       </div>
     )
   }
 }
+
+const afterSubmit = (result, dispatch) =>
+  dispatch(reset('newMenuItemForm'));
 
 function validate (formProps) {
   const errors = {};
@@ -50,12 +99,20 @@ function validate (formProps) {
   return errors
 }
 
+function mapStateToProps (state) {
+  return {
+    restaurant: state.restaurant.data
+  }
+}
+
 const form = reduxForm({
   form: 'newMenuItemForm',
   fields: ['name'],
-  validate: validate
+  validate: validate,
+  onSubmitSuccess: afterSubmit,
 })(NewMenuItemForm);
 
-export default connect(null, { 
-  newMenuItem
+export default connect(mapStateToProps, { 
+  newMenuItem,
+  newCategory
 })(form);

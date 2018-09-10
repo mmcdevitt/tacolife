@@ -6,6 +6,7 @@ import OauthRedirect from '../Auth/OauthRedirect';
 import Aside from '../UI/Aside/Aside';
 import MenuItems from './MenuItems';
 import NewMenuItem from './NewMenuItem'
+import AuthenticateUser from '../../hoc/AuthenticateUser';
 
 const Dashboard = () => {
   return <div>Test</div>
@@ -28,4 +29,4 @@ class RestaurantAdminRoutes extends React.Component {
   }
 }
 
-export default RestaurantAdminRoutes;
+export default AuthenticateUser(RestaurantAdminRoutes)

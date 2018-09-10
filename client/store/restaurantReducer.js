@@ -6,6 +6,7 @@ import {
 	DELETE_RESTAURANT,
   EDIT_RESTAURANT,
   NEW_MENU_ITEM,
+  NEW_CATEGORY,
 } from '../actions/restaurant/actions';
 
 const initialState = {
@@ -61,6 +62,14 @@ const reducer = (state=initialState, action) => {
         data: {
           ...state.data,
           menuItems: [...state.data.menuItems, action.payload]
+        }
+      }
+    case NEW_CATEGORY:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          categories: [...state.data.categories, action.payload]
         }
       }
 		default: 
