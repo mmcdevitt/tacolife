@@ -105,9 +105,12 @@ export const deleteRestaurant = (id) => {
 }
 
 export const newMenuItem = (data) => {
+  console.log('actions', data)
   return dispatch => {
     axios
-      .post('/api/menu_items', data)
+      .post('/api/menu_items', data, {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then(res => {
         dispatch({
           type: NEW_MENU_ITEM,

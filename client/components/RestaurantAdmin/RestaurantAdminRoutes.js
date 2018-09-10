@@ -21,7 +21,7 @@ class RestaurantAdminRoutes extends React.Component {
         <Switch>
           <Route exact path={`${path}`} component={Dashboard} />
           <Route path={`${path}/products/new`} component={NewMenuItem} />
-          {/* <Route path={`${path}/products`} component={MenuItems} /> */}
+          <Route path={`${path}/products`} component={MenuItems} />
         </Switch>
       </React.Fragment>
     )

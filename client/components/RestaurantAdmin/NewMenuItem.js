@@ -2,14 +2,14 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import {newMenuItem} from '../../actions/restaurant/actions'
+import {newMenuItem} from '../../actions/restaurant/actions'
 import Button from '../UI/Button/Button'
 
 class NewMenuItemForm extends React.Component {
   onFormSubmit (data) {
     const { history } = this.props;
-
-    // this.props.newMenuItem(data)
+    console.log('submit', data)
+    this.props.newMenuItem(data)
   }
 
   renderField (field) {
@@ -31,7 +31,8 @@ class NewMenuItemForm extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
-          <Field type="text" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="menuItem" />
+          <Field type="text" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="name" />
+          <Field type="number" component={this.renderField} placeholder="New Menu Item" label="menuItem" name="price" /> 
           <Button primary block large action="submit">Submit</Button>
         </form>
       </div>
@@ -51,10 +52,10 @@ function validate (formProps) {
 
 const form = reduxForm({
   form: 'newMenuItemForm',
-  fields: ['menuItem'],
+  fields: ['name'],
   validate: validate
 })(NewMenuItemForm);
 
 export default connect(null, { 
-  // newMenuItem
+  newMenuItem
 })(form);
