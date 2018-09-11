@@ -61,7 +61,17 @@ const reducer = (state=initialState, action) => {
         ...state,
         data: {
           ...state.data,
-          menuItems: [...state.data.menuItems, action.payload]
+          menuItems: [...state.data.menuItems, action.payload],
+          categories: state.data.categories.map(category => {
+            if (category.id === action.payload.categoryId) {
+              return {
+                ...category,
+                menuItems: [...category.menuItems, action.payload]
+              }
+            }
+
+            return category
+          })
         }
       }
     case NEW_CATEGORY:

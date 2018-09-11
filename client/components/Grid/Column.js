@@ -42,7 +42,7 @@ class Column extends React.Component {
   }
 
   render() {
-    return <div className={this.classNames()}>{this.props.children}</div>;
+    return <div id={this.props.id} className={this.classNames()}>{this.props.children}</div>;
   }
 }
 
