@@ -4,6 +4,7 @@ import { reduxForm, Field, reset } from 'redux-form';
 import {Column} from '../Grid'
 import {newMenuItem} from '../../actions/restaurant/actions'
 import Button from '../UI/Button/Button'
+import MenuItemsList from './MenuItemsList';
 
 class Category extends React.Component {
   constructor () {
@@ -28,7 +29,8 @@ class Category extends React.Component {
     console.log('CATEGORY SCU', nextProps.categorySelectedId, nextState.id)
     // if (nextProps.categorySelectedId !== nextState.id) return false;
     if (!nextState.id) return false
-    if (nextState.id && nextProps.categorySelectedId === nextState.id) return true
+    if (nextState.id && nextProps.categorySelectedId !== nextState.id) return true
+    if (nextState.id && nextState.toggleInput) return true
     return true
   }
 
@@ -77,11 +79,7 @@ class Category extends React.Component {
       <Column className="category" id={`category_${category.id}`}>
         {category.name}
         <div>
-          {
-            category.menuItems && !!category.menuItems.length && (category.menuItems.map(item => {
-              return <div key={item.id}>{item.name}</div>
-            }))
-          }
+          <MenuItemsList category={category} />
           <button onClick={this.renderForm}>New Item</button>
           {
             this.state.toggleInput && (
