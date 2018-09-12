@@ -6,18 +6,29 @@ import MenuItem from './MenuItem';
 
 class MenuItems extends React.Component {
   renderMenuItem () {
-    const { menuItems } = this.props;
+    const { menuItems, categories } = this.props;
 
-    return menuItems.map(item => {
+    if (categories) {
+    return categories.map(cat => {
       return (
-        <MenuItem 
-          key={item.id} 
-          item={item}
-          click={this.props.click}
-          id={item.id}
-        />
+        <React.Fragment>
+          <div className="twelve-cols">{cat.name}</div>
+          {
+            cat.menuItems.map(item => {
+              return (
+                <MenuItem 
+                  key={item.id} 
+                  item={item}
+                  click={this.props.click}
+                  id={item.id}
+                />
+              )
+            })
+          }
+        </React.Fragment>
       )
     })
+  }
   }
 
   render () {

@@ -55,7 +55,7 @@ class SingleRestaurant extends React.Component {
                 4.5 / 5 125 Ratings
               </div>
             </div>
-            <MenuItems click={this.handleClick} menuItems={menuItems} />
+            <MenuItems click={this.handleClick} categories={restaurant.categories} />
           </Container>
         </Column>
         <SidebarCart cartItems={cartItems} />
