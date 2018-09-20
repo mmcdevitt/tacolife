@@ -19,7 +19,7 @@ router.get('/:id', async (req, res, next) => {
       include: [
         {
           model: Category,
-          include: [{model: MenuItem}]
+          include: [{model: MenuItem, include: [{model: ChoiceCategory}]}]
         },
         {
           model: MenuItem,

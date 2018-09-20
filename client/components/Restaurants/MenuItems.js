@@ -11,7 +11,7 @@ class MenuItems extends React.Component {
     if (categories) {
     return categories.map(cat => {
       return (
-        <React.Fragment>
+        <React.Fragment key={cat.id}>
           <div className="twelve-cols">
             <h6>{cat.name}</h6>
           </div>

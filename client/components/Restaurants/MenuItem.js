@@ -29,7 +29,15 @@ class MenuItem extends React.Component {
     return (
       <Column className="menu-item-container" width={6}>
         <ModalLauncher customElement={this.customElement}>
-          {/* <h1>{item.name}</h1> */}
+          {/* <h1>{item.name}</h1>
+          <div>
+            {
+              item.choiceCategories.map(cat => {
+                console.log(cat)
+                return <div>{cat.name}</div>
+              })
+            }
+          </div> */}
           <AddToCart menuItem={item} toggleModal={toggleModal} />
         </ModalLauncher>
       </Column>
