@@ -12,7 +12,9 @@ class MenuItems extends React.Component {
     return categories.map(cat => {
       return (
         <React.Fragment>
-          <div className="twelve-cols">{cat.name}</div>
+          <div className="twelve-cols">
+            <h6>{cat.name}</h6>
+          </div>
           {
             cat.menuItems.map(item => {
               return (

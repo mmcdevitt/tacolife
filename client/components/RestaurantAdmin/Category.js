@@ -77,7 +77,7 @@ class Category extends React.Component {
 
     return (
       <Column className="category" id={`category_${category.id}`}>
-        {category.name}
+        <h6>{category.name}</h6>
         <div>
           <MenuItemsList category={category} />
           <button onClick={this.renderForm}>New Item</button>

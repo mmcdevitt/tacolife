@@ -2,11 +2,15 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  padding: 15px;
 }
 
 .category {
   flex: 0 0 auto;
   width: 250px;
+  border: 1px solid #dcdcdc;
+  padding: 15px;
+  margin-right: 15px;
 }
 
 .scroll {
