@@ -6,9 +6,9 @@ const authenticateUser = passport.authenticate('jwt', { session: false });
 module.exports = router
 
 router.post('/', authenticateUser, (req, res, next) => {
-  console.log('POST', req.body)
   MenuItem.create(req.body)
     .then(item => {
+      console.log(item)
       res.json(item)
     })
     .catch(err => {

@@ -6,6 +6,7 @@ const {User, Roles} = require('../server/db/models')
 const restaurantSeed = require('../server/seeds/restaurantSeeds')
 const menuSeed = require('../server/seeds/menuSeeds')
 const roleSeed = require('../server/seeds/roleSeeds')
+const choiceCategorySeed = require('../server/seeds/choiceCategorySeeds')
 
 async function seed() {
   await db.sync({force: true})
@@ -54,6 +55,7 @@ async function runSeed() {
     await restaurantSeed()
     await menuSeed()
     await roleSeed()
+    await choiceCategorySeed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1
