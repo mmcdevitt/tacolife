@@ -1,0 +1,7 @@
+.nav li a {
+  display: block;
+  padding: 0 1.25rem;
+  line-height: 2.25rem;
+  position: relative;
+  white-space: nowrap;
+}

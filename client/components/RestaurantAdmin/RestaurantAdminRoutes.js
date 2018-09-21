@@ -7,6 +7,7 @@ import Aside from '../UI/Aside/Aside';
 import MenuItems from './MenuItems';
 import NewMenuItem from './NewMenuItem'
 import AuthenticateUser from '../../hoc/AuthenticateUser';
+import Sidebar from './Sidebar/Sidebar';
 
 const Dashboard = () => {
   return <div>Test</div>
@@ -18,7 +19,7 @@ class RestaurantAdminRoutes extends React.Component {
 
     return (
       <React.Fragment>
-        <Aside border="right">hello</Aside>
+        <Sidebar path={path} />
         <Switch>
           <Route exact path={`${path}`} component={Dashboard} />
           <Route path={`${path}/products/new`} component={NewMenuItem} />
