@@ -3,7 +3,8 @@ module.exports = {
   // For Google Auth
   google: {
     clientID: '740697790013-deggbe2sl57ifp7k0m1abtjiu8ue1brb.apps.googleusercontent.com',
-    clientSecret: '9rX9iH8W0aTWVjEGC2eUmbVZ'
+    clientSecret: '9rX9iH8W0aTWVjEGC2eUmbVZ',
+    redirectDomain: 'http://localhost:8080/auth/google/callback',
   },
 
   // Facebook Auth (Future)
@@ -13,7 +14,7 @@ module.exports = {
 
   cookieKey: 'asdf',
 
-  redirectDomain: 'http://localhost:8080',
+  redirectDomain: 'http://localhost:8080/auth/google/callback',
 
   tokenKey: '10kdda;kl29!!lkj'
 }

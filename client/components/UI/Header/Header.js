@@ -45,7 +45,7 @@ class Header extends React.Component {
         <Nested>
           <Column flex width={1}>
             <div className="logo align-self-center">
-              <Link to="/">Taco Life</Link>
+              <Link to="/">Taqo Hero</Link>
             </div>
           </Column>
           <Column width={9}></Column>
