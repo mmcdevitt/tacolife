@@ -14,7 +14,7 @@ function sessionsToken (user) {
 const googleConfig = {
   clientID: keys.google.clientID,
   clientSecret: keys.google.clientSecret,
-  callbackURL: 'http://localhost:8080/auth/google/callback'
+  callbackURL: keys.google.redirectDomain,
 }
 
 const strategy = new GoogleStrategy(
