@@ -97,3 +97,6 @@ h6, .h6 { font-size: 1.0rem; }
   justify-content: flex-end
 }
 
+.wrapper {
+  padding: 20px;
+}
