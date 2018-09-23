@@ -4,7 +4,7 @@ import { Column, Nested } from "../components/Grid";
 import axios from 'axios';
 // import actions from '../actions/restaurant/actions'
 import Restaurants from '../components/Restaurants/Restaurants';
-import Aside from '../components/UI/Aside/Aside';
+import FilterSidebar from '../components/UI/Filters/FilterSidebar';
 
 class Home extends React.Component {
   renderRestaurants () {
@@ -18,7 +18,7 @@ class Home extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <Aside />
+        <FilterSidebar />
         <Column className="content" width={9}>
           <Nested>
             {this.renderRestaurants()}

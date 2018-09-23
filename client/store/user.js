@@ -15,7 +15,7 @@ const REMOVE_USER = 'REMOVE_USER'
 const initialState = {
   isLoading: false,
   currentUser: {},
-  authenticated: localStorage.getItem('token') ? true : false,
+  authenticated: false,
   errorMessage: '',
   token: ''
 }
