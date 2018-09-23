@@ -12,16 +12,6 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  // const users = await Promise.all([
-  //   User.create({
-  //     firstName: 'Michael', 
-  //     lastName: 'McDevitt', 
-  //     username: 'mmcdevi1', 
-  //     email: 'mmcdevi1@gmail.com', 
-  //     password: 'password',
-  //   }
-  // ])
-
   const user = await User.create({
     firstName: 'Michael', 
     lastName: 'McDevitt', 
@@ -38,8 +28,6 @@ async function seed() {
     email: 'mmcdevi2@gmail.com', 
     password: 'password',
   })
-  
-  // await user.setRoles(await Roles.findById(1))
 
   console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)
