@@ -2,13 +2,15 @@ import React from 'react';
 import Aside from '../Aside/Aside';
 import Button from '../Button/Button';
 import Slider from '../RangeSlider/Slider';
+import Checkbox from '../Checkbox/Checkbox';
 
 import './Filters.css';
+
 
 class FilterSidebar extends React.Component {
   render () {
     return (
-      <Aside>
+      <Aside border="right">
         <div className="wrapper">
           <div className="filters">
 
@@ -29,6 +31,15 @@ class FilterSidebar extends React.Component {
                     <Button block primary>Pickup</Button>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="filters-group">
+              <div className="filters-price">
+                <div className="filters-price-title">
+                  <h6>Features</h6>
+                </div>
+                <Checkbox label="Free Shipping" />
               </div>
             </div>
 
